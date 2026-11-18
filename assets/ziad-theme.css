@@ -81,6 +81,16 @@ textarea { letter-spacing: 0.01em; }
 .zt-fit-note { font-size: 1.4rem; line-height: 1.5; }
 .zt-product-edit .card__information { padding-inline: 0; }
 .zt-product-edit .card__heading { font-weight: 600; }
+.zt-product-edit .card__heading { font-size: var(--ziad-card-title, 14px); }
+.zt-product-edit .card-information > .price { margin-top: .4rem; }
+.zt-product-edit .card-information .price-item { color: rgba(var(--color-foreground), .8); }
+.zt-product-edit .card__media img { object-position: center 35%; }
+.zt-product-edit .quick-add__submit {
+  min-height: 4.4rem;
+  font-size: 1.25rem;
+  letter-spacing: .02em;
+}
+.zt-community__empty { margin: 0; text-align: center; }
 .zt-product-edit .quick-add-modal__content {
   inset: 0 0 0 auto;
   transform: none;

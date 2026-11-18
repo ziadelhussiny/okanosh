@@ -7,7 +7,6 @@
     endif
   endfor
 -%}
-{%- if reviews or request.design_mode -%}
 <section class="zt-section zt-community color-{{ section.settings.color_scheme }}" aria-labelledby="ZiadCommunityHeading-{{ section.id }}">
   <div class="zt-section__inner">
     <header class="zt-community__header">
@@ -38,6 +37,8 @@
 
     {%- if request.design_mode and reviews == false -%}
       <p>Add a customer review in the theme editor to show this section on the storefront.</p>
+    {%- elsif reviews == false -%}
+      <p class="zt-community__empty">Customer reviews are coming soon.</p>
     {%- endif -%}
     {%- if section.settings.link_label != blank and section.settings.link != blank -%}
       <a class="zt-text-link zt-community__link" {% if section.settings.link != blank %}href="{{ section.settings.link }}"{% else %}role="link" aria-disabled="true"{% endif %}>
@@ -46,7 +47,6 @@
     {%- endif -%}
   </div>
 </section>
-{%- endif -%}
 
 {% schema %}
 {
