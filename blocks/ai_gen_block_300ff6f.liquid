@@ -1,0 +1,1142 @@
+{% doc %}
+  @prompt
+    A clean, minimal fashion collection grid featuring full-body female models showing different outfits from the same collection. Each image presents one product clearly: coats, leather jackets, knitwear, and pullovers. Models stand against a pure white background with consistent lighting and framing. The layout is symmetrical, evenly spaced, and optimized for an online store collection page. High-end luxury lookbook aesthetic, realistic fabric texture, crisp details, and professional studio quality. 4K, ultra-clean, catalog-ready, perfect for an e-commerce collection section., the same collection. Each image presents one product clearly: coats, leather jackets, knitwear, and pullovers. Models stand against a pure white background with consistent lighting and framing. Symmetrical layout, evenly spaced, ultra-minimal, and optimized for an online store collection page. High-end luxury lookbook aesthetic with realistic fabric textures, crisp details, and professional studio quality. 4K, ultra-clean, catalog-ready, perfect for an e-commerce collection section.
+    
+    Add interactive motion:
+    Make the product cards smoothly slide left and right on hover or drag, creating a subtle responsive horizontal micro-animation. Movement should be clean, elegant, and consistent with luxury brand aesthetics.
+    
+    Responsiveness:
+    Ensure the entire layout is fully responsive on all screen sizes (desktop, tablet, mobile) with adaptive spacing, fluid scaling, and perfect alignment across devices. Touch-friendly interactions on mobile., A clean, minimal fashion collection grid featuring full-body female models wearing different outfits from the same collection. Each image showcases one product clearly: coats, leather jackets, knitwear, and pullovers. Models stand against a pure white background with consistent lighting, even framing, and a luxury lookbook aesthetic. Ultra-minimal layout, symmetrical spacing, high-end textures, crisp fabric detail, and professional studio quality. 4K, ultra-clean, catalog-ready, perfect for an e-commerce collection section.
+    
+    Interactive Behavior:
+    – On hover (desktop), reveal clean product information on top of the image using a soft fade-in overlay (product name, category, and short detail).
+    – Remove navigation arrows completely.
+    – Enable smooth left/right sliding using drag on desktop and touch-swipe on mobile.
+    – Movement should be subtle, elegant, and consistent with luxury brand interaction standards.
+    
+    Responsiveness:
+    – Fully responsive across all screen sizes (desktop, tablet, mobile).
+    – Adaptive spacing, fluid grids, and perfect alignment.
+    – Touch-friendly swipe interaction on mobile with a physics-based smooth drag animation.,  A clean, minimal fashion collection grid featuring full-body female models wearing different outfits from the same collection. Each image showcases one product clearly: coats, leather jackets, knitwear, and pullovers. Models stand against a pure white background with consistent lighting, even framing, and a luxury lookbook aesthetic. Ultra-minimal layout, symmetrical spacing, high-end fabric texture, crisp details, and professional studio quality. 4K, ultra-clean, catalog-ready for e-commerce.
+    
+    Interactive Behavior:
+    – On hover (desktop), reveal clean product information over the image with a soft fade-in overlay (product name, category, short detail).
+    – Remove navigation arrows completely.
+    – Enable smooth left/right sliding using drag on desktop and touch-swipe on mobile.
+    – Movement should be subtle, elegant, and consistent with luxury brand interaction standards.
+    
+    Mobile Behavior:
+    – On mobile, the slider auto-moves horizontally in a slow, smooth loop.
+    – Auto-scroll pauses when the user touches or drags and resumes after interaction.
+    – Ensure animation feels premium, soft, and non-aggressive.
+    
+    Responsiveness:
+    – Fully responsive across all screen sizes (desktop, tablet, mobile).
+    – Adaptive spacing, fluid scaling, and perfect alignment.
+    – Touch-friendly interactions on mobile and physics-based smooth drag animation., A clean, minimal fashion collection grid showing full-body female models wearing pieces from the same collection: coats, leather jackets, knitwear, and pullovers. Each image features a single product on a pure white background with consistent studio lighting, even framing, realistic fabric texture, and crisp high-end detail. Symmetrical, evenly spaced grid optimized for e-commerce catalog and luxury lookbook aesthetics. 4K, ultra-clean, catalog-ready, premium studio quality.
+    
+    Interactive Behavior (Desktop):
+    – On hover reveal a subtle, elegant overlay with product name, category, and a short detail (soft fade-in).
+    – Remove navigation arrows completely.
+    – Enable smooth horizontal movement via drag (mouse) with inertia/physics feel; snapping to cards optional but recommended.
+    
+    Mobile Behavior (critical):
+    – On mobile viewports the slider auto-scrolls horizontally in a slow, smooth loop that snaps to each product card and holds it in view for 5 seconds before advancing to the next card.
+    – Auto-scroll pauses immediately when the user touches, drags, or interacts, and resumes automatically after 1.5 seconds of no interaction.
+    – Touch-swipe must work naturally and cancel the auto-scroll while interacting. Movement and timing should feel premium, soft, and non-aggressive.
+    
+    Responsiveness & Accessibility:
+    – Fully responsive across desktop, tablet, and mobile with adaptive spacing and fluid scaling preserving full-body framing.
+    – Touch-friendly, physics-based drag animation, keyboard support (left/right), and ARIA-friendly semantics.
+    – Provide tuning variables for auto-scroll speed, hold duration (5s), resume delay (1.5s), spacing, and breakpoints.
+    
+    Output expectations (if requesting code):
+    If generating code, output a single-file, production-ready HTML/CSS/JS implementation (vanilla JS, no external libs) with comments and placeholder images/data, implementing the exact mobile hold-for-5-seconds auto-scroll behavior and pause/resume on interaction.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-premium-carousel-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+    overflow: hidden;
+  }
+
+  .ai-premium-carousel__container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-premium-carousel__header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    margin-bottom: {{ block.settings.header_spacing }}px;
+  }
+
+  .ai-premium-carousel__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .ai-premium-carousel__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .ai-premium-carousel__wrapper-{{ ai_gen_id }} {
+    position: relative;
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+
+  .ai-premium-carousel__track-container-{{ ai_gen_id }} {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ai-premium-carousel__track-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.grid_gap }}px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: grab;
+    user-select: none;
+  }
+
+  .ai-premium-carousel__track-{{ ai_gen_id }}.is-dragging {
+    cursor: grabbing;
+    transition: none;
+  }
+
+  .ai-premium-carousel__track-{{ ai_gen_id }}.is-auto-scrolling {
+    transition: transform {{ block.settings.mobile_scroll_duration }}s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ai-premium-carousel__item-{{ ai_gen_id }} {
+    flex: 0 0 calc((100% - ({{ block.settings.columns_desktop | minus: 1 }} * {{ block.settings.grid_gap }}px)) / {{ block.settings.columns_desktop }});
+    background-color: {{ block.settings.card_background }};
+    position: relative;
+  }
+
+  .ai-premium-carousel__link-{{ ai_gen_id }} {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+  }
+
+  .ai-premium-carousel__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: {{ block.settings.image_ratio }};
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+
+  .ai-premium-carousel__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .ai-premium-carousel__item-{{ ai_gen_id }}:hover .ai-premium-carousel__image-{{ ai_gen_id }} {
+    transform: scale({{ block.settings.hover_image_scale | divided_by: 100.0 }});
+  }
+
+  .ai-premium-carousel__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-premium-carousel__placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    opacity: 0.3;
+  }
+
+  .ai-premium-carousel__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .ai-premium-carousel__overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: {{ block.settings.overlay_background }};
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+    justify-content: {{ block.settings.overlay_position }};
+    align-items: center;
+    padding: {{ block.settings.overlay_padding }}px;
+    pointer-events: none;
+  }
+
+  .ai-premium-carousel__item-{{ ai_gen_id }}:hover .ai-premium-carousel__overlay-{{ ai_gen_id }} {
+    opacity: 1;
+  }
+
+  .ai-premium-carousel__overlay-content-{{ ai_gen_id }} {
+    text-align: center;
+    transform: translateY(10px);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .ai-premium-carousel__item-{{ ai_gen_id }}:hover .ai-premium-carousel__overlay-content-{{ ai_gen_id }} {
+    transform: translateY(0);
+  }
+
+  .ai-premium-carousel__overlay-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.overlay_title_size }}px;
+    color: {{ block.settings.overlay_text_color }};
+    margin: 0 0 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .ai-premium-carousel__overlay-category-{{ ai_gen_id }} {
+    font-size: {{ block.settings.overlay_category_size }}px;
+    color: {{ block.settings.overlay_text_color }};
+    margin: 0 0 6px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+  }
+
+  .ai-premium-carousel__overlay-price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.overlay_price_size }}px;
+    color: {{ block.settings.overlay_text_color }};
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .ai-premium-carousel__static-content-{{ ai_gen_id }} {
+    padding: {{ block.settings.content_padding }}px;
+    text-align: {{ block.settings.content_alignment }};
+  }
+
+  .ai-premium-carousel__product-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.product_title_size }}px;
+    color: {{ block.settings.product_title_color }};
+    margin: 0 0 8px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  .ai-premium-carousel__product-price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.product_price_size }}px;
+    color: {{ block.settings.product_price_color }};
+    margin: 0;
+    font-weight: 400;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-premium-carousel__item-{{ ai_gen_id }} {
+      flex: 0 0 calc((100% - ({{ block.settings.columns_tablet | minus: 1 }} * {{ block.settings.grid_gap }}px)) / {{ block.settings.columns_tablet }});
+    }
+
+    .ai-premium-carousel__title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.85);
+    }
+
+    .ai-premium-carousel__subtitle-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subtitle_size }}px * 0.9);
+    }
+
+    .ai-premium-carousel__overlay-{{ ai_gen_id }} {
+      opacity: 0;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-premium-carousel__item-{{ ai_gen_id }} {
+      flex: 0 0 calc((100% - ({{ block.settings.columns_mobile | minus: 1 }} * {{ block.settings.grid_gap | times: 0.75 }}px)) / {{ block.settings.columns_mobile }});
+    }
+
+    .ai-premium-carousel__track-{{ ai_gen_id }} {
+      gap: {{ block.settings.grid_gap | times: 0.75 }}px;
+    }
+
+    .ai-premium-carousel__title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.7);
+    }
+
+    .ai-premium-carousel__subtitle-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subtitle_size }}px * 0.8);
+    }
+
+    .ai-premium-carousel__product-title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.product_title_size }}px * 0.9);
+    }
+
+    .ai-premium-carousel__product-price-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.product_price_size }}px * 0.9);
+    }
+
+    .ai-premium-carousel-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px 0 {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+    }
+
+    .ai-premium-carousel__overlay-{{ ai_gen_id }} {
+      opacity: 0;
+    }
+
+    .ai-premium-carousel__item-{{ ai_gen_id }}:hover .ai-premium-carousel__image-{{ ai_gen_id }} {
+      transform: none;
+    }
+  }
+{% endstyle %}
+
+<premium-carousel-{{ ai_gen_id }} class="ai-premium-carousel-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-premium-carousel__container-{{ ai_gen_id }}">
+    {% if block.settings.title != blank or block.settings.subtitle != blank %}
+      <div class="ai-premium-carousel__header-{{ ai_gen_id }}">
+        {% if block.settings.title != blank %}
+          <h2 class="ai-premium-carousel__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+        {% endif %}
+        {% if block.settings.subtitle != blank %}
+          <p class="ai-premium-carousel__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-premium-carousel__wrapper-{{ ai_gen_id }}">
+      <div class="ai-premium-carousel__track-container-{{ ai_gen_id }}" tabindex="0" role="region" aria-label="Product carousel">
+        <div class="ai-premium-carousel__track-{{ ai_gen_id }}" data-track role="list">
+          {% liquid
+            assign collection = block.settings.collection
+            assign products_to_show = collection.products
+            
+            if collection == blank
+              assign products_to_show = blank
+            endif
+          %}
+
+          {% if products_to_show != blank %}
+            {% for product in products_to_show limit: block.settings.products_limit %}
+              <div class="ai-premium-carousel__item-{{ ai_gen_id }}" role="listitem">
+                <a href="{{ product.url }}" class="ai-premium-carousel__link-{{ ai_gen_id }}">
+                  <div class="ai-premium-carousel__image-wrapper-{{ ai_gen_id }}">
+                    {% if product.featured_image %}
+                      <img
+                        src="{{ product.featured_image | image_url: width: 800 }}"
+                        alt="{{ product.featured_image.alt | escape }}"
+                        loading="lazy"
+                        width="800"
+                        height="{{ 800 | divided_by: block.settings.image_ratio }}"
+                        class="ai-premium-carousel__image-{{ ai_gen_id }}"
+                      >
+                    {% else %}
+                      <div class="ai-premium-carousel__placeholder-{{ ai_gen_id }}">
+                        {{ 'product-1' | placeholder_svg_tag }}
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.show_overlay %}
+                      <div class="ai-premium-carousel__overlay-{{ ai_gen_id }}">
+                        <div class="ai-premium-carousel__overlay-content-{{ ai_gen_id }}">
+                          {% if block.settings.show_overlay_category and product.type != blank %}
+                            <div class="ai-premium-carousel__overlay-category-{{ ai_gen_id }}">{{ product.type }}</div>
+                          {% endif %}
+                          <h3 class="ai-premium-carousel__overlay-title-{{ ai_gen_id }}">{{ product.title }}</h3>
+                          {% if block.settings.show_overlay_price %}
+                            <div class="ai-premium-carousel__overlay-price-{{ ai_gen_id }}">{{ product.price | money }}</div>
+                          {% endif %}
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+
+                  {% if block.settings.show_static_info %}
+                    <div class="ai-premium-carousel__static-content-{{ ai_gen_id }}">
+                      <h3 class="ai-premium-carousel__product-title-{{ ai_gen_id }}">{{ product.title }}</h3>
+                      <div class="ai-premium-carousel__product-price-{{ ai_gen_id }}">{{ product.price | money }}</div>
+                    </div>
+                  {% endif %}
+                </a>
+              </div>
+            {% endfor %}
+          {% else %}
+            {% for i in (1..8) %}
+              <div class="ai-premium-carousel__item-{{ ai_gen_id }}" role="listitem">
+                <div class="ai-premium-carousel__image-wrapper-{{ ai_gen_id }}">
+                  <div class="ai-premium-carousel__placeholder-{{ ai_gen_id }}">
+                    {{ 'product-1' | placeholder_svg_tag }}
+                    <div class="ai-premium-carousel__empty-state-{{ ai_gen_id }}">
+                      Next, select a collection
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</premium-carousel-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PremiumCarousel{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.track = this.querySelector('[data-track]');
+        this.container = this.querySelector('[tabindex="0"]');
+        this.isDragging = false;
+        this.startPos = 0;
+        this.currentTranslate = 0;
+        this.prevTranslate = 0;
+        this.animationID = 0;
+        this.currentIndex = 0;
+        this.velocity = 0;
+        this.lastPos = 0;
+        this.lastTime = Date.now();
+        this.autoScrollTimeout = null;
+        this.holdTimeout = null;
+        this.resumeTimeout = null;
+        this.isAutoScrolling = false;
+        this.userInteracting = false;
+      }
+
+      connectedCallback() {
+        this.setupDragAndSwipe();
+        this.setupKeyboardNav();
+        this.startAutoScroll();
+        window.addEventListener('resize', () => this.handleResize());
+      }
+
+      disconnectedCallback() {
+        this.stopAutoScroll();
+      }
+
+      isMobile() {
+        return window.innerWidth <= 749;
+      }
+
+      getItemsPerView() {
+        const width = window.innerWidth;
+        if (width <= 749) return {{ block.settings.columns_mobile }};
+        if (width <= 989) return {{ block.settings.columns_tablet }};
+        return {{ block.settings.columns_desktop }};
+      }
+
+      getItemWidth() {
+        return this.track.children[0]?.offsetWidth || 0;
+      }
+
+      getGap() {
+        const width = window.innerWidth;
+        if (width <= 749) return {{ block.settings.grid_gap }} * 0.75;
+        return {{ block.settings.grid_gap }};
+      }
+
+      getMaxIndex() {
+        const items = this.track.children.length;
+        const itemsPerView = this.getItemsPerView();
+        return Math.max(0, items - itemsPerView);
+      }
+
+      handleResize() {
+        this.stopAutoScroll();
+        this.updatePosition();
+        this.startAutoScroll();
+      }
+
+      updatePosition() {
+        const itemWidth = this.getItemWidth();
+        const gap = this.getGap();
+        const offset = -(this.currentIndex * (itemWidth + gap));
+        this.currentTranslate = offset;
+        this.prevTranslate = offset;
+        this.track.style.transform = `translateX(${offset}px)`;
+      }
+
+      startAutoScroll() {
+        if (!this.isMobile() || !{{ block.settings.enable_mobile_auto_scroll }}) return;
+        
+        this.scheduleNextScroll();
+      }
+
+      scheduleNextScroll() {
+        if (this.holdTimeout) clearTimeout(this.holdTimeout);
+        
+        this.holdTimeout = setTimeout(() => {
+          if (!this.userInteracting) {
+            this.moveToNext();
+          }
+        }, {{ block.settings.mobile_hold_duration }} * 1000);
+      }
+
+      moveToNext() {
+        const maxIndex = this.getMaxIndex();
+        
+        this.currentIndex++;
+        if (this.currentIndex > maxIndex) {
+          this.currentIndex = 0;
+        }
+        
+        const itemWidth = this.getItemWidth();
+        const gap = this.getGap();
+        const offset = -(this.currentIndex * (itemWidth + gap));
+        
+        this.currentTranslate = offset;
+        this.prevTranslate = offset;
+        
+        this.isAutoScrolling = true;
+        this.track.classList.add('is-auto-scrolling');
+        this.track.style.transform = `translateX(${offset}px)`;
+        
+        setTimeout(() => {
+          this.track.classList.remove('is-auto-scrolling');
+          this.isAutoScrolling = false;
+          this.scheduleNextScroll();
+        }, {{ block.settings.mobile_scroll_duration }} * 1000);
+      }
+
+      stopAutoScroll() {
+        if (this.holdTimeout) {
+          clearTimeout(this.holdTimeout);
+          this.holdTimeout = null;
+        }
+        if (this.resumeTimeout) {
+          clearTimeout(this.resumeTimeout);
+          this.resumeTimeout = null;
+        }
+        this.track.classList.remove('is-auto-scrolling');
+        this.isAutoScrolling = false;
+      }
+
+      pauseAndResume() {
+        this.userInteracting = true;
+        this.stopAutoScroll();
+        
+        if (this.resumeTimeout) clearTimeout(this.resumeTimeout);
+        
+        this.resumeTimeout = setTimeout(() => {
+          this.userInteracting = false;
+          if (this.isMobile() && {{ block.settings.enable_mobile_auto_scroll }}) {
+            this.scheduleNextScroll();
+          }
+        }, {{ block.settings.mobile_resume_delay }} * 1000);
+      }
+
+      setupKeyboardNav() {
+        this.container.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            this.moveToPrev();
+            this.pauseAndResume();
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            this.moveToNextManual();
+            this.pauseAndResume();
+          }
+        });
+      }
+
+      moveToPrev() {
+        if (this.currentIndex > 0) {
+          this.currentIndex--;
+          this.animateToIndex();
+        }
+      }
+
+      moveToNextManual() {
+        const maxIndex = this.getMaxIndex();
+        if (this.currentIndex < maxIndex) {
+          this.currentIndex++;
+          this.animateToIndex();
+        }
+      }
+
+      animateToIndex() {
+        const itemWidth = this.getItemWidth();
+        const gap = this.getGap();
+        const offset = -(this.currentIndex * (itemWidth + gap));
+        
+        this.currentTranslate = offset;
+        this.prevTranslate = offset;
+        
+        this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        this.track.style.transform = `translateX(${offset}px)`;
+        
+        setTimeout(() => {
+          this.track.style.transition = '';
+        }, 600);
+      }
+
+      setupDragAndSwipe() {
+        this.track.addEventListener('mousedown', (e) => this.dragStart(e));
+        this.track.addEventListener('touchstart', (e) => this.dragStart(e), { passive: true });
+        this.track.addEventListener('mouseup', (e) => this.dragEnd(e));
+        this.track.addEventListener('touchend', (e) => this.dragEnd(e));
+        this.track.addEventListener('mouseleave', (e) => this.dragEnd(e));
+        this.track.addEventListener('mousemove', (e) => this.drag(e));
+        this.track.addEventListener('touchmove', (e) => this.drag(e), { passive: true });
+        
+        this.track.querySelectorAll('a').forEach(link => {
+          link.addEventListener('dragstart', (e) => e.preventDefault());
+        });
+      }
+
+      getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+      }
+
+      dragStart(event) {
+        this.isDragging = true;
+        this.startPos = this.getPositionX(event);
+        this.lastPos = this.startPos;
+        this.lastTime = Date.now();
+        this.velocity = 0;
+        this.track.classList.add('is-dragging');
+        this.track.classList.remove('is-auto-scrolling');
+        this.pauseAndResume();
+        this.animationID = requestAnimationFrame(() => this.animation());
+      }
+
+      drag(event) {
+        if (!this.isDragging) return;
+        
+        const currentPosition = this.getPositionX(event);
+        const currentTime = Date.now();
+        const timeDelta = currentTime - this.lastTime;
+        
+        if (timeDelta > 0) {
+          this.velocity = (currentPosition - this.lastPos) / timeDelta;
+        }
+        
+        this.lastPos = currentPosition;
+        this.lastTime = currentTime;
+        
+        const diff = currentPosition - this.startPos;
+        this.currentTranslate = this.prevTranslate + diff;
+        
+        const itemWidth = this.getItemWidth();
+        const gap = this.getGap();
+        const maxTranslate = -(this.getMaxIndex() * (itemWidth + gap));
+        
+        if (this.currentTranslate > 0) {
+          this.currentTranslate = this.currentTranslate * 0.3;
+        } else if (this.currentTranslate < maxTranslate) {
+          this.currentTranslate = maxTranslate + (this.currentTranslate - maxTranslate) * 0.3;
+        }
+      }
+
+      dragEnd(event) {
+        if (!this.isDragging) return;
+        
+        this.isDragging = false;
+        cancelAnimationFrame(this.animationID);
+        this.track.classList.remove('is-dragging');
+
+        const itemWidth = this.getItemWidth();
+        const gap = this.getGap();
+        const itemSize = itemWidth + gap;
+        
+        let targetTranslate = this.currentTranslate + this.velocity * 200;
+        
+        const maxTranslate = -(this.getMaxIndex() * itemSize);
+        if (targetTranslate > 0) targetTranslate = 0;
+        if (targetTranslate < maxTranslate) targetTranslate = maxTranslate;
+        
+        const targetIndex = Math.round(-targetTranslate / itemSize);
+        this.currentIndex = targetIndex;
+        
+        const finalTranslate = -(targetIndex * itemSize);
+        this.currentTranslate = finalTranslate;
+        this.prevTranslate = finalTranslate;
+        
+        this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        this.track.style.transform = `translateX(${finalTranslate}px)`;
+        
+        setTimeout(() => {
+          this.track.style.transition = '';
+        }, 600);
+      }
+
+      animation() {
+        if (this.isDragging) {
+          this.track.style.transform = `translateX(${this.currentTranslate}px)`;
+          requestAnimationFrame(() => this.animation());
+        }
+      }
+    }
+
+    customElements.define('premium-carousel-{{ ai_gen_id }}', PremiumCarousel{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Premium carousel",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "New Collection"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Discover our latest pieces"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Header spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "label": "Maximum products",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Mobile auto-scroll"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_auto_scroll",
+      "label": "Enable auto-scroll",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "mobile_hold_duration",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Hold duration",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "mobile_scroll_duration",
+      "min": 0.5,
+      "max": 2,
+      "step": 0.1,
+      "unit": "s",
+      "label": "Scroll duration",
+      "default": 0.8
+    },
+    {
+      "type": "range",
+      "id": "mobile_resume_delay",
+      "min": 1,
+      "max": 5,
+      "step": 0.5,
+      "unit": "s",
+      "label": "Resume delay",
+      "default": 1.5
+    },
+    {
+      "type": "header",
+      "content": "Carousel layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on tablet",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Grid gap",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "0.75",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "1.33",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "1.5",
+          "label": "Wide (3:2)"
+        }
+      ],
+      "default": "0.75"
+    },
+    {
+      "type": "header",
+      "content": "Hover overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show hover overlay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay_category",
+      "label": "Show product category",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay_price",
+      "label": "Show price",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "overlay_background",
+      "label": "Overlay background",
+      "default": "rgba(0, 0, 0, 0.7)"
+    },
+    {
+      "type": "color",
+      "id": "overlay_text_color",
+      "label": "Overlay text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "overlay_position",
+      "label": "Overlay position",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "overlay_padding",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Overlay padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "overlay_title_size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "overlay_category_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Category size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "overlay_price_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Price size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Static product info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_static_info",
+      "label": "Show static info",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Content padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "product_price_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Price size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Title color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "product_price_color",
+      "label": "Price color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Hover effects"
+    },
+    {
+      "type": "range",
+      "id": "hover_image_scale",
+      "min": 100,
+      "max": 110,
+      "step": 1,
+      "unit": "%",
+      "label": "Image scale on hover",
+      "default": 105
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 1000,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium carousel"
+    }
+  ]
+}
+{% endschema %}
