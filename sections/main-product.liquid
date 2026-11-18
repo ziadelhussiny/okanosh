@@ -213,6 +213,9 @@
                 {%- when 'custom_liquid' -%}
                   {{ block.settings.custom_liquid }}
                 {%- when 'size_chart' -%}
+                  {%- if product.metafields.custom.fit_notes.value != blank -%}
+                    <p class="zt-fit-note">{{ product.metafields.custom.fit_notes.value | escape }}</p>
+                  {%- endif -%}
                   {% render 'ziad-size-chart', product: product, block: block, section: section %}
                 {%- when 'purchase_assurance' -%}
                   {% render 'ziad-purchase-assurance', block: block %}

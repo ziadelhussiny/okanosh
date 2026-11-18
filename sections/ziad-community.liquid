@@ -1,3 +1,13 @@
+{%- liquid
+  assign reviews = false
+  for block in section.blocks
+    if block.settings.quote != blank
+      assign reviews = true
+      break
+    endif
+  endfor
+-%}
+{%- if reviews or request.design_mode -%}
 <section class="zt-section zt-community color-{{ section.settings.color_scheme }}" aria-labelledby="ZiadCommunityHeading-{{ section.id }}">
   <div class="zt-section__inner">
     <header class="zt-community__header">
@@ -8,6 +18,7 @@
 
     <div class="zt-community__rail">
       {%- for block in section.blocks -%}
+        {%- if block.settings.quote == blank -%}{%- continue -%}{%- endif -%}
         <article class="zt-review{% if block.type == 'image_review' %} zt-review--image{% endif %}" {{ block.shopify_attributes }}>
           {%- if block.type == 'image_review' and block.settings.image != blank -%}
             {{ block.settings.image | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(min-width: 990px) 33vw, 82vw', loading: 'lazy', alt: block.settings.image.alt | default: block.settings.name }}
@@ -25,13 +36,17 @@
       {%- endfor -%}
     </div>
 
-    {%- if section.settings.link_label != blank -%}
+    {%- if request.design_mode and reviews == false -%}
+      <p>Add a customer review in the theme editor to show this section on the storefront.</p>
+    {%- endif -%}
+    {%- if section.settings.link_label != blank and section.settings.link != blank -%}
       <a class="zt-text-link zt-community__link" {% if section.settings.link != blank %}href="{{ section.settings.link }}"{% else %}role="link" aria-disabled="true"{% endif %}>
         {{ section.settings.link_label | escape }} <span aria-hidden="true">→</span>
       </a>
     {%- endif -%}
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

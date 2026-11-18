@@ -3,6 +3,19 @@
   assign mobile_alt = section.settings.mobile_image.alt | default: desktop_alt
 -%}
 
+{% style %}
+  #shopify-section-{{ section.id }} .zt-hero {
+    --hero-height: {{ section.settings.desktop_height | default: 620 }}px;
+    --hero-mobile-height: {{ section.settings.mobile_height | default: 420 }}px;
+    --hero-title-size: {{ section.settings.desktop_title | default: 72 }}px;
+    --hero-mobile-title-size: {{ section.settings.mobile_title | default: 44 }}px;
+    --hero-panel: {{ section.settings.panel_color | default: '#BC7969' }};
+    --hero-copy: {{ section.settings.copy_color | default: '#F8F3EF' }};
+    --hero-cta: {{ section.settings.cta_color | default: '#F8F3EF' }};
+    --hero-cta-text: {{ section.settings.cta_text | default: '#352A25' }};
+    --hero-media-fit: {{ section.settings.media_fit | default: 'cover' }};
+  }
+{% endstyle %}
 <section class="zt-hero color-{{ section.settings.color_scheme }}" aria-labelledby="ZiadHeroHeading-{{ section.id }}">
   <div class="zt-hero__media zt-hero__desktop-media">
     {%- if section.settings.desktop_media_type == 'video' -%}
@@ -70,6 +83,15 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {"type":"range","id":"desktop_height","label":"Desktop hero height","min":360,"max":900,"step":10,"default":620,"unit":"px"},
+    {"type":"range","id":"mobile_height","label":"Mobile media height","min":200,"max":700,"step":10,"default":420,"unit":"px"},
+    {"type":"range","id":"desktop_title","label":"Desktop heading size","min":32,"max":100,"step":2,"default":72,"unit":"px"},
+    {"type":"range","id":"mobile_title","label":"Mobile heading size","min":24,"max":68,"step":2,"default":44,"unit":"px"},
+    {"type":"color","id":"panel_color","label":"Text panel background","default":"#BC7969"},
+    {"type":"color","id":"copy_color","label":"Text color","default":"#F8F3EF"},
+    {"type":"color","id":"cta_color","label":"Button background","default":"#F8F3EF"},
+    {"type":"color","id":"cta_text","label":"Button text","default":"#352A25"},
+    {"type":"select","id":"media_fit","label":"Image and video fit","default":"cover","options":[{"value":"cover","label":"Fill frame"},{"value":"contain","label":"Show full media"}]},
     { "type": "select", "id": "desktop_media_type", "label": "Desktop media", "default": "image", "options": [{ "value": "image", "label": "Image" }, { "value": "video", "label": "Video" }] },
     { "type": "image_picker", "id": "desktop_image", "label": "Desktop image / video poster" },
     { "type": "video", "id": "desktop_video", "label": "Desktop Shopify-hosted video" },

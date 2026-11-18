@@ -61,6 +61,19 @@
     <script src="{{ 'ziad-theme.js' | asset_url }}" defer="defer"></script>
 
     {{ 'ziad-theme.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      :root {
+        --ziad-background: {{ settings.zt_canvas | default: '#F8F3EF' }};
+        --ziad-ink: {{ settings.zt_ink | default: '#352A25' }};
+        --ziad-accent: {{ settings.zt_accent | default: '#BC7969' }};
+        --ziad-detail: {{ settings.zt_detail | default: '#E5CBC3' }};
+        --ziad-gutter: {{ settings.zt_gutter | default: 40 }}px;
+        --ziad-section-space: {{ settings.zt_spacing | default: 72 }}px;
+        --ziad-mobile-space: {{ settings.zt_mobile_spacing | default: 40 }}px;
+        --ziad-card-title: {{ settings.zt_card_title | default: 14 }}px;
+        --ziad-card-price: {{ settings.zt_card_price | default: 12 }}px;
+      }
+    {% endstyle %}
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>

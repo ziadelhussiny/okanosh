@@ -1453,6 +1453,20 @@
     ]
   },
   {
+    "name": "Okanosh design controls",
+    "settings": [
+      {"type":"color","id":"zt_canvas","label":"Store background","default":"#F8F3EF"},
+      {"type":"color","id":"zt_ink","label":"Store text","default":"#352A25"},
+      {"type":"color","id":"zt_accent","label":"Accent","default":"#BC7969"},
+      {"type":"color","id":"zt_detail","label":"Light detail","default":"#E5CBC3"},
+      {"type":"range","id":"zt_gutter","label":"Desktop section gutter","min":16,"max":64,"step":2,"default":40,"unit":"px"},
+      {"type":"range","id":"zt_spacing","label":"Desktop section spacing","min":24,"max":112,"step":4,"default":72,"unit":"px"},
+      {"type":"range","id":"zt_mobile_spacing","label":"Mobile section spacing","min":16,"max":80,"step":4,"default":40,"unit":"px"},
+      {"type":"range","id":"zt_card_title","label":"Product card title","min":12,"max":22,"step":1,"default":14,"unit":"px"},
+      {"type":"range","id":"zt_card_price","label":"Product card price","min":10,"max":20,"step":1,"default":12,"unit":"px"}
+    ]
+  },
+  {
     "name": "t:settings_schema.customer_accounts.name",
     "settings": [
       {
