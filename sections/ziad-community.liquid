@@ -1,0 +1,77 @@
+<section class="zt-section zt-community color-{{ section.settings.color_scheme }}" aria-labelledby="ZiadCommunityHeading-{{ section.id }}">
+  <div class="zt-section__inner">
+    <header class="zt-community__header">
+      {%- if section.settings.eyebrow != blank -%}<p class="zt-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="zt-display" id="ZiadCommunityHeading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+    </header>
+
+    <div class="zt-community__rail">
+      {%- for block in section.blocks -%}
+        <article class="zt-review{% if block.type == 'image_review' %} zt-review--image{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.type == 'image_review' and block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(min-width: 990px) 33vw, 82vw', loading: 'lazy', alt: block.settings.image.alt | default: block.settings.name }}
+            <div class="zt-review__overlay"></div>
+          {%- endif -%}
+          <div class="zt-review__content">
+            <div class="zt-review__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+              {%- for star in (1..5) -%}<span aria-hidden="true">{% if star <= block.settings.rating %}★{% else %}☆{% endif %}</span>{%- endfor -%}
+            </div>
+            <blockquote>“{{ block.settings.quote | escape }}”</blockquote>
+            <p class="zt-review__name"><strong>{{ block.settings.name | escape }}</strong>{% if block.settings.product != blank %} — {{ block.settings.product | escape }}{% endif %}</p>
+            {%- if block.settings.verified -%}<p class="zt-review__verified"><span aria-hidden="true">✓</span> Verified buyer</p>{%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.link_label != blank -%}
+      <a class="zt-text-link zt-community__link" {% if section.settings.link != blank %}href="{{ section.settings.link }}"{% else %}role="link" aria-disabled="true"{% endif %}>
+        {{ section.settings.link_label | escape }} <span aria-hidden="true">→</span>
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ziad community",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Okanosh community" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Worn your way." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Real pieces. Real people. Real stories.</p>" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "See more from our community" },
+    { "type": "url", "id": "link", "label": "Link" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-3" }
+  ],
+  "blocks": [
+    {
+      "type": "image_review",
+      "name": "Photo review",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Customer photo" },
+        { "type": "range", "id": "rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "quote", "label": "Review", "default": "The colors are even more beautiful in real life. I wear it all the time." },
+        { "type": "text", "id": "name", "label": "Customer name", "default": "Salma M." },
+        { "type": "text", "id": "product", "label": "Product name" },
+        { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true }
+      ]
+    },
+    {
+      "type": "text_review",
+      "name": "Text review",
+      "settings": [
+        { "type": "range", "id": "rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "quote", "label": "Review", "default": "My new everyday favorite. So easy to style and genuinely comfortable." },
+        { "type": "text", "id": "name", "label": "Customer name", "default": "Nour K." },
+        { "type": "text", "id": "product", "label": "Product name", "default": "Knit pullover" },
+        { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Ziad community", "blocks": [{ "type": "image_review" }, { "type": "text_review" }, { "type": "text_review" }] }]
+}
+{% endschema %}

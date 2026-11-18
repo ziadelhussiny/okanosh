@@ -1,0 +1,68 @@
+<section class="zt-section zt-editorial color-{{ section.settings.color_scheme }}" aria-labelledby="ZiadEditorialHeading-{{ section.id }}">
+  <div class="zt-section__inner">
+    <div class="zt-editorial__campaign">
+      <div class="zt-editorial__campaign-media">
+        {%- if section.settings.campaign_video != blank -%}
+          {{ section.settings.campaign_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, image_size: '2000x' }}
+        {%- elsif section.settings.campaign_image != blank -%}
+          {{ section.settings.campaign_image | image_url: width: 2200 | image_tag: widths: '750, 1100, 1500, 2000, 2200', sizes: '100vw', loading: 'lazy', alt: section.settings.campaign_image.alt | default: section.settings.campaign_heading }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      <div class="zt-editorial__campaign-copy">
+        <h2 class="zt-display" id="ZiadEditorialHeading-{{ section.id }}">{{ section.settings.campaign_heading | escape }}</h2>
+        {%- if section.settings.campaign_link_label != blank -%}
+          <a class="button button--secondary" {% if section.settings.campaign_link != blank %}href="{{ section.settings.campaign_link }}"{% else %}role="link" aria-disabled="true"{% endif %}>
+            {{ section.settings.campaign_link_label | escape }} <span aria-hidden="true">→</span>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="zt-editorial__story color-{{ section.settings.story_color_scheme }}">
+      <div class="zt-editorial__story-media">
+        {%- if section.settings.story_image != blank -%}
+          {{ section.settings.story_image | image_url: width: 1400 | image_tag: widths: '550, 750, 1000, 1400', sizes: '(min-width: 750px) 48vw, 100vw', loading: 'lazy', alt: section.settings.story_image.alt | default: section.settings.story_heading }}
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      <div class="zt-editorial__story-copy">
+        {%- if section.settings.story_eyebrow != blank -%}<p class="zt-eyebrow">{{ section.settings.story_eyebrow | escape }}</p>{%- endif -%}
+        <h3 class="zt-display">{{ section.settings.story_heading | escape }}</h3>
+        <div class="rte">{{ section.settings.story_text }}</div>
+        {%- if section.settings.story_link_label != blank -%}
+          <a class="button" {% if section.settings.story_link != blank %}href="{{ section.settings.story_link }}"{% else %}role="link" aria-disabled="true"{% endif %}>
+            {{ section.settings.story_link_label | escape }} <span aria-hidden="true">→</span>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ziad editorial story",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "image_picker", "id": "campaign_image", "label": "Campaign image" },
+    { "type": "video", "id": "campaign_video", "label": "Campaign video (optional)" },
+    { "type": "text", "id": "campaign_heading", "label": "Campaign heading", "default": "Loud, everyday pieces." },
+    { "type": "text", "id": "campaign_link_label", "label": "Campaign button", "default": "Explore the collection" },
+    { "type": "url", "id": "campaign_link", "label": "Campaign link" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Campaign color scheme", "default": "scheme-3" },
+    { "type": "header", "content": "Brand story" },
+    { "type": "image_picker", "id": "story_image", "label": "Story image" },
+    { "type": "text", "id": "story_eyebrow", "label": "Story eyebrow", "default": "Our story" },
+    { "type": "text", "id": "story_heading", "label": "Story heading", "default": "About Okanosh" },
+    { "type": "richtext", "id": "story_text", "label": "Story text", "default": "<p>Contemporary Egyptian womenswear made for confident, expressive women and their everyday lives.</p>" },
+    { "type": "text", "id": "story_link_label", "label": "Story button", "default": "Learn more" },
+    { "type": "url", "id": "story_link", "label": "Story link" },
+    { "type": "color_scheme", "id": "story_color_scheme", "label": "Story color scheme", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "Ziad editorial story" }]
+}
+{% endschema %}

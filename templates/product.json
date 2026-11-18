@@ -1,1 +1,55 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"text","settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"description":{"type":"description","settings":{}},"custom_liquid_6xWyNC":{"type":"custom_liquid","disabled":true,"settings":{"custom_liquid":"{% comment %}\n  Assign the metafield to a variable.\n  Replace 'custom.size' with your actual namespace and key if different.\n{% endcomment %}\n{%- assign meta_content = product.metafields.custom.size -%}\n\n{%- if meta_content != blank -%}\n  <style>\n    \/* Unique Styling Scope - won't affect other parts of your theme *\/\n    .cm-accordion-wrapper {\n      margin: 1.5rem 0;\n      font-family: inherit; \/* Inherits theme font but resets other styles *\/\n      box-sizing: border-box;\n    }\n\n    .cm-accordion {\n      background: #ffffff;\n      border: 1px solid #e0e0e0;\n      border-radius: 8px;\n      overflow: hidden;\n      transition: all 0.3s ease;\n      box-shadow: 0 2px 5px rgba(0,0,0,0.05);\n    }\n\n    .cm-accordion[open] {\n      box-shadow: 0 4px 12px rgba(0,0,0,0.1);\n      border-color: #d0d0d0;\n    }\n\n    .cm-summary {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      padding: 15px 20px;\n      cursor: pointer;\n      background-color: #f9f9f9;\n      font-weight: 600;\n      font-size: 1rem;\n      color: #333;\n      list-style: none; \/* Hides default triangle in some browsers *\/\n      user-select: none;\n    }\n\n    \/* Remove default marker for Chrome\/Safari *\/\n    .cm-summary::-webkit-details-marker {\n      display: none;\n    }\n\n    \/* Custom Chevron Icon *\/\n    .cm-icon {\n      width: 20px;\n      height: 20px;\n      transition: transform 0.3s ease;\n      fill: #555;\n    }\n\n    .cm-accordion[open] .cm-icon {\n      transform: rotate(180deg);\n    }\n\n    .cm-content {\n      padding: 20px;\n      background-color: #fff;\n      border-top: 1px solid #eee;\n      line-height: 1.6;\n      color: #555;\n      font-size: 1.5rem;\n    }\n\n    .cm-list {\n      margin: 0;\n      padding-left: 20px;\n    }\n\n    .cm-list li {\n      margin-bottom: 8px;\n    }\n    \n    \/* Dark mode support if your theme uses it *\/\n    @media (prefers-color-scheme: dark) {\n      .cm-accordion { background: #1a1a1a; border-color: #333; }\n      .cm-summary { background: #252525; color: #fff; }\n      .cm-content { background: #1a1a1a; color: #ccc; border-top-color: #333; }\n      .cm-icon { fill: #fff; }\n    }\n  <\/style>\n\n  <div class=\"cm-accordion-wrapper\">\n    <details class=\"cm-accordion\">\n      <summary class=\"cm-summary\">\n        <span>Size Details<\/span>\n        <!-- SVG Chevron Icon -->\n        <svg class=\"cm-icon\" viewBox=\"0 0 24 24\">\n          <path d=\"M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z\"\/>\n        <\/svg>\n      <\/summary>\n      \n      <div class=\"cm-content\">\n        {%- if meta_content.type contains 'list' -%}\n          <!-- If it is a List of Text -->\n          <ul class=\"cm-list\">\n            {%- for item in meta_content.value -%}\n              <li>{{ item }}<\/li>\n            {%- endfor -%}\n          <\/ul>\n        {%- else -%}\n          <!-- If it is Multi-line Text or Single Text -->\n          {{ meta_content | newline_to_br }}\n        {%- endif -%}\n      <\/div>\n    <\/details>\n  <\/div>\n{%- endif -%}"}},"collapsible_tab_MjHUdR":{"type":"collapsible_tab","settings":{"heading":"Exchange and Refund Policy","icon":"none","content":"<h2>Refund & Exchange Policy<\/h2><h3>Immediate Inspection Upon Delivery<\/h3><ul><li>We kindly ask you to try on the items you purchased while the courier is still there. You may return them immediately if you want.<br\/>Please note that you can either choose to keep the whole order or return the whole order.<br\/>Items cannot be returned once the courier leaves.<br\/>If you want to exchange, send us a message within 24 hours.<br\/>Items must be returned in their original packaging with all the tags attached.<br\/>An additional shipping fee will be charged for exchanges.<\/li><\/ul>","page":""}},"collapsible_tab_BNnVHX":{"type":"collapsible_tab","settings":{"heading":"Product care","icon":"none","content":"<h4>Dry clean recommended for all our products.<br\/>Do not tumble dry.<br\/>Do not bleach.<br\/>Avoid machine washing.<br\/>Wash inside out.<br\/>Iron on low heat (max 40°C).<\/h4>","page":""}},"share":{"type":"share","settings":{"share_label":"Share"}}},"block_order":["vendor","title","price","variant_picker","quantity_selector","buy_buttons","description","custom_liquid_6xWyNC","collapsible_tab_MjHUdR","collapsible_tab_BNnVHX","share"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"large","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail","mobile_thumbnails":"hide","media_position":"left","image_zoom":"lightbox","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"related-products":{"type":"related-products","settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"padding_top":36,"padding_bottom":28}}},"order":["main","related-products"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": { "type": "text", "settings": { "text": "{{ product.vendor }}", "text_style": "uppercase" } },
+        "title": { "type": "title", "settings": {} },
+        "price": { "type": "price", "settings": {} },
+        "variant_picker": { "type": "variant_picker", "settings": { "picker_type": "button", "swatch_shape": "circle" } },
+        "size_chart": { "type": "size_chart", "settings": { "heading": "Size chart", "label": "View size chart", "page": "" } },
+        "quantity_selector": { "type": "quantity_selector", "settings": {} },
+        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true, "show_gift_card_recipient": true } },
+        "description": { "type": "description", "settings": {} },
+        "returns": { "type": "collapsible_tab", "settings": { "heading": "Exchange and Refund Policy", "icon": "none", "content": "<h2>Refund & Exchange Policy</h2><h3>Immediate Inspection Upon Delivery</h3><ul><li>We kindly ask you to try on the items you purchased while the courier is still there. You may return them immediately if you want.<br>Please note that you can either choose to keep the whole order or return the whole order.<br>Items cannot be returned once the courier leaves.<br>If you want to exchange, send us a message within 24 hours.<br>Items must be returned in their original packaging with all the tags attached.<br>An additional shipping fee will be charged for exchanges.</li></ul>", "page": "" } },
+        "care": { "type": "collapsible_tab", "settings": { "heading": "Product care", "icon": "none", "content": "<h4>Dry clean recommended for all our products.<br>Do not tumble dry.<br>Do not bleach.<br>Avoid machine washing.<br>Wash inside out.<br>Iron on low heat (max 40°C).</h4>", "page": "" } },
+        "share": { "type": "share", "settings": { "share_label": "Share" } }
+      },
+      "block_order": ["vendor", "title", "price", "variant_picker", "size_chart", "quantity_selector", "buy_buttons", "description", "returns", "care", "share"],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": ["main", "related-products"]
+}

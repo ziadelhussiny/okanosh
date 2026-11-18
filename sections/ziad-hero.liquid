@@ -1,0 +1,76 @@
+{%- liquid
+  assign desktop_alt = section.settings.desktop_image.alt | default: section.settings.heading
+  assign mobile_alt = section.settings.mobile_image.alt | default: desktop_alt
+-%}
+
+<section class="zt-hero color-{{ section.settings.color_scheme }}" aria-labelledby="ZiadHeroHeading-{{ section.id }}">
+  <div class="zt-hero__media zt-hero__desktop-media">
+    {%- if section.settings.desktop_media_type == 'video' -%}
+      {%- if section.settings.desktop_video != blank -%}
+        {{ section.settings.desktop_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, image_size: '2000x' }}
+      {%- elsif section.settings.desktop_video_url != blank -%}
+        <video autoplay loop muted playsinline{% if section.settings.desktop_image != blank %} poster="{{ section.settings.desktop_image | image_url: width: 2000 }}"{% endif %}>
+          <source src="{{ section.settings.desktop_video_url | escape }}" type="video/mp4">
+        </video>
+      {%- endif -%}
+    {%- elsif section.settings.desktop_image != blank -%}
+      {{ section.settings.desktop_image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 2000, 2400', sizes: '50vw', loading: 'eager', fetchpriority: 'high', alt: desktop_alt }}
+    {%- else -%}
+      <div class="zt-placeholder">{{ 'hero-apparel-1' | placeholder_svg_tag }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="zt-hero__media zt-hero__mobile-media">
+    {%- if section.settings.mobile_media_type == 'video' -%}
+      {%- if section.settings.mobile_video != blank -%}
+        {{ section.settings.mobile_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, image_size: '1000x' }}
+      {%- elsif section.settings.mobile_video_url != blank -%}
+        <video autoplay loop muted playsinline{% if section.settings.mobile_image != blank %} poster="{{ section.settings.mobile_image | image_url: width: 1000 }}"{% endif %}>
+          <source src="{{ section.settings.mobile_video_url | escape }}" type="video/mp4">
+        </video>
+      {%- endif -%}
+    {%- elsif section.settings.mobile_image != blank -%}
+      {{ section.settings.mobile_image | image_url: width: 1200 | image_tag: widths: '375, 550, 750, 1000, 1200', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: mobile_alt }}
+    {%- elsif section.settings.desktop_image != blank -%}
+      {{ section.settings.desktop_image | image_url: width: 1200 | image_tag: widths: '375, 550, 750, 1000, 1200', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: desktop_alt }}
+    {%- else -%}
+      <div class="zt-placeholder">{{ 'hero-apparel-1' | placeholder_svg_tag }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="zt-hero__content">
+    {%- if section.settings.eyebrow != blank -%}<p class="zt-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+    <h1 class="zt-display zt-hero__heading" id="ZiadHeroHeading-{{ section.id }}">{{ section.settings.heading | escape }}</h1>
+    {%- if section.settings.text != blank -%}<div class="zt-hero__text rte">{{ section.settings.text }}</div>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a class="button zt-hero__button" {% if section.settings.button_link != blank %}href="{{ section.settings.button_link }}"{% else %}role="link" aria-disabled="true"{% endif %}>
+        {{ section.settings.button_label | escape }} <span aria-hidden="true">→</span>
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ziad responsive hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "select", "id": "desktop_media_type", "label": "Desktop media", "default": "image", "options": [{ "value": "image", "label": "Image" }, { "value": "video", "label": "Video" }] },
+    { "type": "image_picker", "id": "desktop_image", "label": "Desktop image / video poster" },
+    { "type": "video", "id": "desktop_video", "label": "Desktop Shopify-hosted video" },
+    { "type": "url", "id": "desktop_video_url", "label": "Desktop MP4 URL" },
+    { "type": "select", "id": "mobile_media_type", "label": "Mobile media", "default": "image", "options": [{ "value": "image", "label": "Image" }, { "value": "video", "label": "Video" }] },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image / video poster" },
+    { "type": "video", "id": "mobile_video", "label": "Mobile Shopify-hosted video" },
+    { "type": "url", "id": "mobile_video_url", "label": "Mobile MP4 URL" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FALL / WINTER 2027" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The new FW27 drop." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Colour. Texture. Confidence.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop new arrivals" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-2" }
+  ],
+  "presets": [{ "name": "Ziad responsive hero" }]
+}
+{% endschema %}

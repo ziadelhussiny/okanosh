@@ -1,0 +1,46 @@
+{%- liquid
+  assign chart = product.metafields.custom.size_chart
+  if chart == blank
+    assign chart = product.metafields.custom.size
+  endif
+  assign chart_id = 'ZiadSizeChart-' | append: section.id | append: '-' | append: block.id
+-%}
+
+{%- if chart != blank or block.settings.page != blank -%}
+  <div class="zt-size-chart" {{ block.shopify_attributes }}>
+    <button class="zt-size-chart__trigger" type="button" data-ziad-size-chart-open aria-haspopup="dialog" aria-controls="{{ chart_id }}">
+      <span>{{ block.settings.label | default: 'View size chart' | escape }}</span>
+      <span aria-hidden="true">↗</span>
+    </button>
+
+    <dialog class="zt-size-chart__dialog" id="{{ chart_id }}" data-ziad-size-chart aria-labelledby="{{ chart_id }}-heading">
+      <div class="zt-size-chart__panel">
+        <div class="zt-size-chart__header">
+          <h2 id="{{ chart_id }}-heading">{{ block.settings.heading | default: 'Size chart' | escape }}</h2>
+          <button type="button" class="zt-size-chart__close" data-ziad-size-chart-close aria-label="Close size chart">×</button>
+        </div>
+        <div class="zt-size-chart__content rte">
+          {%- if chart != blank -%}
+            {%- if chart.type contains 'list.' -%}
+              <ul>
+                {%- for item in chart.value -%}<li>{{ item }}</li>{%- endfor -%}
+              </ul>
+            {%- elsif chart.type == 'file_reference' or chart.type == 'image' -%}
+              {{ chart.value | image_url: width: 1600 | image_tag: widths: '550, 900, 1200, 1600', loading: 'lazy', alt: block.settings.heading }}
+            {%- elsif chart.type contains 'rich_text' -%}
+              {{ chart | metafield_tag }}
+            {%- else -%}
+              {{ chart.value | default: chart | newline_to_br }}
+            {%- endif -%}
+          {%- else -%}
+            {{ block.settings.page.content }}
+          {%- endif -%}
+        </div>
+      </div>
+    </dialog>
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="zt-size-chart zt-size-chart--empty" {{ block.shopify_attributes }}>
+    Add a product metafield named <strong>custom.size_chart</strong> (or select a fallback page) to show this product's chart.
+  </div>
+{%- endif -%}
