@@ -43,7 +43,7 @@
         "heading_accent": "Arrivals",
         "collection": "fw-27",
         "products_to_show": 4,
-        "enable_view_toggle": false,
+        "enable_view_toggle": true,
         "quick_add": "none",
         "view_all_label": "View all",
         "color_scheme": "scheme-1"
