@@ -12,6 +12,15 @@
     "ziad_hero": {
       "type": "ziad-hero",
       "settings": {
+        "desktop_height": 620,
+        "mobile_height": 420,
+        "desktop_title": 72,
+        "mobile_title": 44,
+        "panel_color": "#bc7969",
+        "copy_color": "#f8f3ef",
+        "cta_color": "#f8f3ef",
+        "cta_text": "#352a25",
+        "media_fit": "cover",
         "desktop_media_type": "image",
         "desktop_image": "shopify://shop_images/DSC_6603.jpg",
         "desktop_video_url": "https://cdn.shopify.com/videos/c/o/v/4517952203c1473a85761ffd7628f24d.mp4",
@@ -21,31 +30,9 @@
         "eyebrow": "",
         "heading": "The Okanosh Edit",
         "text": "",
-        "panel_color": "#BC7969",
-        "copy_color": "#F8F3EF",
-        "cta_color": "#F8F3EF",
-        "cta_text": "#352A25",
         "button_label": "Shop new arrivals",
         "button_link": "shopify://collections/fw-27",
         "color_scheme": "scheme-2"
-      }
-    },
-    "ziad_collections": {
-      "type": "ziad-collections",
-      "blocks": {
-        "pullovers": { "type": "collection", "settings": { "collection": "pullover", "title": "Knitwear" } },
-        "jackets": { "type": "collection", "settings": { "collection": "jackets", "title": "Jackets" } },
-        "cardigans": { "type": "collection", "settings": { "collection": "cardigans", "title": "Cardigans" } },
-        "tops": { "type": "collection", "settings": { "collection": "tops", "title": "Shirts" } }
-      },
-        "block_order": ["pullovers", "jackets", "cardigans", "tops"],
-      "settings": {
-        "eyebrow": "",
-        "heading": "Shop by",
-        "heading_accent": "Collection",
-        "link_label": "",
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1"
       }
     },
     "ziad_product_edit": {
@@ -62,9 +49,55 @@
         "color_scheme": "scheme-1"
       }
     },
+    "ziad_collections": {
+      "type": "ziad-collections",
+      "blocks": {
+        "pullovers": {
+          "type": "collection",
+          "settings": {
+            "collection": "pullover",
+            "title": "Knitwear"
+          }
+        },
+        "jackets": {
+          "type": "collection",
+          "settings": {
+            "collection": "jackets",
+            "title": "Jackets"
+          }
+        },
+        "cardigans": {
+          "type": "collection",
+          "settings": {
+            "collection": "cardigans",
+            "title": "Cardigans"
+          }
+        },
+        "tops": {
+          "type": "collection",
+          "settings": {
+            "collection": "tops",
+            "title": "Shirts"
+          }
+        }
+      },
+      "block_order": [
+        "pullovers",
+        "jackets",
+        "cardigans",
+        "tops"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Shop by",
+        "heading_accent": "Collection",
+        "link_label": "",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1"
+      }
+    },
     "ziad_editorial": {
       "type": "ziad-editorial-story",
-      "disabled": true,
       "settings": {
         "campaign_image": "shopify://shop_images/DSC_6603.jpg",
         "campaign_heading": "Loud, everyday pieces.",
@@ -80,31 +113,98 @@
         "story_color_scheme": "scheme-1"
       }
     },
+    "ziad_product_edit_rQN84h": {
+      "type": "ziad-product-edit",
+      "settings": {
+        "eyebrow": "",
+        "heading": "All",
+        "heading_accent": "Products",
+        "collection": "fw-27",
+        "products_to_show": 4,
+        "enable_view_toggle": true,
+        "quick_add": "bulk",
+        "view_all_label": "View all",
+        "color_scheme": "scheme-1"
+      }
+    },
     "ziad_community": {
       "type": "ziad-community",
       "blocks": {
-        "review_photo": { "type": "image_review", "settings": { "quote": "", "name": "", "verified": false } },
-        "review_text": { "type": "text_review", "settings": { "quote": "", "name": "", "verified": false } }
+        "review_photo": {
+          "type": "image_review",
+          "settings": {
+            "rating": 5,
+            "quote": "",
+            "name": "",
+            "product": "",
+            "verified": false
+          }
+        },
+        "review_text": {
+          "type": "text_review",
+          "settings": {
+            "rating": 5,
+            "quote": "",
+            "name": "",
+            "product": "Knit pullover",
+            "verified": false
+          }
+        }
       },
-      "block_order": ["review_photo", "review_text"],
+      "block_order": [
+        "review_photo",
+        "review_text"
+      ],
       "settings": {
         "eyebrow": "Worn Your Way",
         "heading": "Customer Reviews",
         "text": "",
         "link_label": "See more from our community",
+        "link": "",
         "color_scheme": "scheme-3"
       }
     },
     "ziad_newsletter": {
       "type": "newsletter",
       "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "Join the Okanosh Community", "heading_size": "h2" } },
-        "intro": { "type": "paragraph", "settings": { "text": "<p>Be the first to know about new arrivals, stories and exclusive offers.</p>" } },
-        "signup": { "type": "email_form", "settings": {} }
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Join the Okanosh Community",
+            "heading_size": "h2"
+          }
+        },
+        "intro": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be the first to know about new arrivals, stories and exclusive offers.</p>"
+          }
+        },
+        "signup": {
+          "type": "email_form",
+          "settings": {}
+        }
       },
-      "block_order": ["heading", "intro", "signup"],
-      "settings": { "color_scheme": "scheme-1", "full_width": true, "padding_top": 20, "padding_bottom": 20 }
+      "block_order": [
+        "heading",
+        "intro",
+        "signup"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
     }
   },
-  "order": ["ziad_hero", "ziad_collections", "ziad_product_edit", "ziad_editorial", "ziad_community", "ziad_newsletter"]
+  "order": [
+    "ziad_hero",
+    "ziad_product_edit",
+    "ziad_collections",
+    "ziad_editorial",
+    "ziad_product_edit_rQN84h",
+    "ziad_community",
+    "ziad_newsletter"
+  ]
 }
