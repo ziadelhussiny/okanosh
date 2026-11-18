@@ -328,9 +328,7 @@ ziad-wishlist-drawer { display: block; }
 }
 .zt-product-edit__toggle[aria-pressed='true'] { background: var(--ziad-accent); color: var(--ziad-background); }
 .zt-product-edit__grid { margin: 0; }
-.zt-product-edit__grid .card__media { transition: padding 220ms ease, background 220ms ease; }
-.zt-product-edit__grid--product .card__media { padding: clamp(1rem, 2vw, 3rem); background: var(--ziad-detail); }
-.zt-product-edit__grid--product .media img { object-fit: contain; }
+.zt-product-edit__grid--product .media img { object-fit: cover; }
 .zt-product-edit__grid--product .media--hover-effect > img:first-child:not(:only-child) { opacity: 0; }
 .zt-product-edit__grid--product .media--hover-effect > img:nth-child(2) { opacity: 1; transform: none; }
 .zt-product-edit .quick-add__submit { min-height: 4.4rem; border-radius: 0; }
@@ -357,6 +355,11 @@ ziad-wishlist-drawer { display: block; }
 .zt-product-edit__heading-accent { font-style: italic; }
 .zt-product-edit .zt-display { font-size: clamp(3.6rem, 5vw, 7.2rem); }
 .zt-product-edit .zt-wishlist-button--card { display: none; }
+@media screen and (max-width: 749px) {
+  .zt-product-edit .zt-product-edit__grid { row-gap: 1.4rem; }
+  .zt-product-edit .quick-add,
+  .zt-product-edit .quick-add-bulk { margin-bottom: 0; }
+}
 @media screen and (min-width: 990px) {
   .zt-product-edit .zt-product-edit__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
