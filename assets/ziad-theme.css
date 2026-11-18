@@ -335,6 +335,50 @@ ziad-wishlist-drawer { display: block; }
 .zt-product-edit__grid--product .media--hover-effect > img:nth-child(2) { opacity: 1; transform: none; }
 .zt-product-edit .quick-add__submit { min-height: 4.4rem; border-radius: 0; }
 
+/* Homepage edit: one lead look and a compact product rail. */
+.zt-product-edit .zt-product-edit__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.2rem 1.4rem;
+}
+.zt-product-edit .zt-product-edit__grid > .grid__item {
+  width: auto;
+  max-width: none;
+  min-width: 0;
+}
+.zt-product-edit .card__heading {
+  font-family: var(--font-heading-family);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+.zt-product-edit .zt-wishlist-button--card button {
+  border: 0;
+  border-radius: 50%;
+}
+.zt-product-edit .quick-add {
+  justify-self: start;
+  margin: .8rem 0 0;
+}
+.zt-product-edit .quick-add__submit {
+  width: auto;
+  min-width: 0;
+  padding-inline: 1.4rem;
+  background: var(--ziad-detail);
+  color: var(--ziad-ink);
+}
+.zt-product-edit .quick-add__submit::after { box-shadow: none; }
+
+@media screen and (min-width: 990px) {
+  .zt-product-edit .zt-product-edit__grid {
+    grid-template-columns: minmax(0, 1.8fr) repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: clamp(1.6rem, 2.5vw, 4rem);
+  }
+  .zt-product-edit .zt-product-edit__grid > .grid__item:not(:first-child) {
+    margin-top: clamp(2rem, 4vw, 6rem);
+  }
+}
+
 .zt-look { padding: 0; }
 .zt-look__layout { display: grid; min-height: 72rem; grid-template-columns: minmax(0, 1.55fr) minmax(38rem, .75fr); }
 .zt-look__media { position: relative; min-height: 58rem; overflow: hidden; background: var(--ziad-detail); }
