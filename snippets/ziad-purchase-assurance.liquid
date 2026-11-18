@@ -1,0 +1,14 @@
+<div class="zt-assurance" {{ block.shopify_attributes }} aria-label="Purchase information">
+  <div class="zt-assurance__item">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h11v10H3zM14 10h4l3 3v3.5h-7zM7.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM17.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+    <div><strong>{{ block.settings.delivery_heading | escape }}</strong><span>{{ block.settings.delivery_text | escape }}</span></div>
+  </div>
+  <div class="zt-assurance__item">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7-4 4 4 4M3 11h13a5 5 0 0 1 5 5v1M17 3l4 4-4 4M21 7H8a5 5 0 0 0-5 5"/></svg>
+    <div><strong>{{ block.settings.exchange_heading | escape }}</strong><span>{{ block.settings.exchange_text | escape }}</span></div>
+  </div>
+  <div class="zt-assurance__item">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.2c0 4.7 3 8.3 7.5 9.8 4.5-1.5 7.5-5.1 7.5-9.8V6zM9 12l2 2 4-4"/></svg>
+    <div><strong>{{ block.settings.payment_heading | escape }}</strong><span>{{ block.settings.payment_text | escape }}</span></div>
+  </div>
+</div>

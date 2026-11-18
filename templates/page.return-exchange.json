@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "ziad-return-form",
+      "settings": {
+        "eyebrow": "Customer care",
+        "heading": "Start a return or exchange.",
+        "text": "<p>Complete the form with your order details. Our team will review your request and contact you with the next step.</p>",
+        "policy_label": "Read the full policy",
+        "policy_link": "shopify://policies/refund-policy",
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": ["main"]
+}

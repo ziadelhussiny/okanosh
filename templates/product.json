@@ -6,8 +6,10 @@
         "vendor": { "type": "text", "settings": { "text": "{{ product.vendor }}", "text_style": "uppercase" } },
         "title": { "type": "title", "settings": {} },
         "price": { "type": "price", "settings": {} },
+        "wishlist": { "type": "wishlist", "settings": {} },
         "variant_picker": { "type": "variant_picker", "settings": { "picker_type": "button", "swatch_shape": "circle" } },
         "size_chart": { "type": "size_chart", "settings": { "heading": "Size chart", "label": "View size chart", "page": "" } },
+        "assurance": { "type": "purchase_assurance", "settings": { "delivery_heading": "Complimentary delivery", "delivery_text": "On orders over 3,000 L.E.", "exchange_heading": "Easy exchange", "exchange_text": "Contact us within 24 hours", "payment_heading": "Secure payment", "payment_text": "Protected checkout" } },
         "quantity_selector": { "type": "quantity_selector", "settings": {} },
         "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true, "show_gift_card_recipient": true } },
         "description": { "type": "description", "settings": {} },
@@ -15,7 +17,7 @@
         "care": { "type": "collapsible_tab", "settings": { "heading": "Product care", "icon": "none", "content": "<h4>Dry clean recommended for all our products.<br>Do not tumble dry.<br>Do not bleach.<br>Avoid machine washing.<br>Wash inside out.<br>Iron on low heat (max 40°C).</h4>", "page": "" } },
         "share": { "type": "share", "settings": { "share_label": "Share" } }
       },
-      "block_order": ["vendor", "title", "price", "variant_picker", "size_chart", "quantity_selector", "buy_buttons", "description", "returns", "care", "share"],
+      "block_order": ["vendor", "title", "price", "wishlist", "variant_picker", "size_chart", "assurance", "quantity_selector", "buy_buttons", "description", "returns", "care", "share"],
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
@@ -49,7 +51,16 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "recently-viewed": {
+      "type": "ziad-recently-viewed",
+      "settings": {
+        "eyebrow": "Your edit",
+        "heading": "Recently viewed.",
+        "products_to_show": 4,
+        "color_scheme": "scheme-1"
+      }
     }
   },
-  "order": ["main", "related-products"]
+  "order": ["main", "related-products", "recently-viewed"]
 }

@@ -1,0 +1,29 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'product-form-' | append: section.id
+-%}
+
+<ziad-sticky-purchase
+  class="zt-sticky-purchase"
+  data-ziad-sticky-purchase
+  data-section-id="{{ section.id }}"
+  data-target-form="{{ product_form_id }}"
+  hidden
+>
+  <div class="zt-sticky-purchase__product">
+    {%- if current_variant.featured_image != blank -%}
+      {{ current_variant.featured_image | image_url: width: 160 | image_tag: class: 'zt-sticky-purchase__image', widths: '80, 120, 160', sizes: '56px', loading: 'lazy', alt: current_variant.featured_image.alt | default: product.title }}
+    {%- elsif product.featured_image != blank -%}
+      {{ product.featured_image | image_url: width: 160 | image_tag: class: 'zt-sticky-purchase__image', widths: '80, 120, 160', sizes: '56px', loading: 'lazy', alt: product.featured_image.alt | default: product.title }}
+    {%- endif -%}
+    <div class="zt-sticky-purchase__meta">
+      <strong>{{ product.title | escape }}</strong>
+      <span class="zt-sticky-purchase__variant">{{ current_variant.title | escape }}</span>
+      <div class="zt-sticky-purchase__price">{% render 'price', product: product, use_variant: true %}</div>
+    </div>
+  </div>
+  <button class="zt-sticky-purchase__button" type="button"{% unless current_variant.available %} disabled{% endunless %}>
+    <span>{% if current_variant.available %}Add to bag{% else %}Sold out{% endif %}</span>
+    <span aria-hidden="true">→</span>
+  </button>
+</ziad-sticky-purchase>

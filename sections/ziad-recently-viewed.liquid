@@ -1,0 +1,36 @@
+<ziad-recently-viewed
+  class="zt-section zt-recent color-{{ section.settings.color_scheme }}"
+  data-current-handle="{{ product.handle | escape }}"
+  data-current-title="{{ product.title | escape }}"
+  data-current-url="{{ product.url | escape }}"
+  data-current-price="{{ product.price | money_with_currency | escape }}"
+  data-current-image="{% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 900 }}{% endif %}"
+  data-max-items="{{ section.settings.products_to_show }}"
+  hidden
+>
+  <div class="zt-section__inner">
+    <div class="zt-recent__header">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="zt-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="zt-display">{{ section.settings.heading | escape }}</h2>
+      </div>
+      <p class="zt-recent__privacy">Stored privately on this device</p>
+    </div>
+    <div class="zt-recent__list" data-ziad-recently-viewed-list role="list"></div>
+  </div>
+</ziad-recently-viewed>
+
+{% schema %}
+{
+  "name": "Ziad recently viewed",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Your edit" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Recently viewed." },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 6, "step": 1, "default": 4 },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "Ziad recently viewed" }]
+}
+{% endschema %}

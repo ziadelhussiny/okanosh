@@ -1,0 +1,95 @@
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+<section class="zt-section zt-look color-{{ section.settings.color_scheme }}" aria-labelledby="ZiadLookHeading-{{ section.id }}">
+  <div class="zt-look__layout">
+    <div class="zt-look__media">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 2200 | image_tag: widths: '750, 1100, 1500, 2000, 2200', sizes: '(min-width: 990px) 62vw, 100vw', loading: 'lazy', alt: section.settings.image.alt | default: section.settings.heading }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag }}
+      {%- endif -%}
+      <p class="zt-look__caption">{{ section.settings.caption | escape }}</p>
+    </div>
+
+    <div class="zt-look__panel">
+      {%- if section.settings.eyebrow != blank -%}<p class="zt-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="zt-display" id="ZiadLookHeading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<div class="zt-look__intro rte">{{ section.settings.text }}</div>{%- endif -%}
+
+      <ol class="zt-look__products" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign look_product = block.settings.product
+            if look_product == blank and section.settings.collection != blank
+              assign look_product = section.settings.collection.products[forloop.index0]
+            endif
+            assign look_variant = look_product.selected_or_first_available_variant
+            assign product_form_id = 'ZiadLookForm-' | append: section.id | append: '-' | append: block.id
+          -%}
+          <li class="zt-look-product" {{ block.shopify_attributes }}>
+            <span class="zt-look-product__number" aria-hidden="true">0{{ forloop.index }}</span>
+            {%- if look_product != blank -%}
+              <a class="zt-look-product__media" href="{{ look_product.url }}" tabindex="-1" aria-hidden="true">
+                {%- if look_product.featured_image != blank -%}
+                  {{ look_product.featured_image | image_url: width: 360 | image_tag: widths: '180, 260, 360', sizes: '110px', loading: 'lazy', alt: look_product.featured_image.alt | default: look_product.title }}
+                {%- endif -%}
+              </a>
+              <div class="zt-look-product__details">
+                <a href="{{ look_product.url }}" class="zt-look-product__title">{{ look_product.title | escape }}</a>
+                {% render 'price', product: look_product, use_variant: true %}
+                {%- if look_product.has_only_default_variant -%}
+                  <product-form class="zt-look-product__form" data-hide-errors="false" data-section-id="{{ section.id }}">
+                    {%- form 'product', look_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                      <input type="hidden" name="id" value="{{ look_variant.id }}"{% unless look_variant.available %} disabled{% endunless %}>
+                      <button type="submit" name="add" class="zt-look-product__add"{% unless look_variant.available %} disabled{% endunless %}>
+                        <span>{% if look_variant.available %}Add look item{% else %}Sold out{% endif %}</span>
+                        <span aria-hidden="true">＋</span>
+                        {%- render 'loading-spinner' -%}
+                      </button>
+                    {%- endform -%}
+                  </product-form>
+                {%- else -%}
+                  <a class="zt-look-product__add" href="{{ look_product.url }}">
+                    <span>Choose your size</span><span aria-hidden="true">→</span>
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              <div class="zt-look-product__details">
+                <p class="zt-look-product__title">Select a product</p>
+                <p class="caption">Choose a product in the Theme Editor.</p>
+              </div>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ziad shop the look",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Editorial image" },
+    { "type": "text", "id": "caption", "label": "Image caption", "default": "Okanosh / The FW27 edit" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Styled together" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop the look." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>A complete outfit, selected by the Okanosh studio.</p>" },
+    { "type": "collection", "id": "collection", "label": "Fallback products collection" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-4" }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Look product",
+      "settings": [{ "type": "product", "id": "product", "label": "Product" }]
+    }
+  ],
+  "presets": [{ "name": "Ziad shop the look", "blocks": [{ "type": "product" }, { "type": "product" }, { "type": "product" }] }]
+}
+{% endschema %}

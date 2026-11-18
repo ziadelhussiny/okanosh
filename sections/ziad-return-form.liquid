@@ -1,0 +1,109 @@
+{%- assign form_id = 'ZiadReturnForm-' | append: section.id -%}
+
+<section class="zt-return color-{{ section.settings.color_scheme }}" aria-labelledby="ZiadReturnHeading-{{ section.id }}">
+  <div class="zt-return__intro">
+    <div class="zt-return__intro-inner">
+      <p class="zt-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 class="zt-display" id="ZiadReturnHeading-{{ section.id }}">{{ section.settings.heading | escape }}</h1>
+      <div class="zt-return__text rte">{{ section.settings.text }}</div>
+      <ol class="zt-return__steps">
+        <li><span>01</span><p><strong>Check eligibility</strong>Submit your request within the policy window.</p></li>
+        <li><span>02</span><p><strong>Tell us the details</strong>Include your order number and the pieces involved.</p></li>
+        <li><span>03</span><p><strong>Wait for confirmation</strong>Our team will contact you with the next step.</p></li>
+      </ol>
+      {%- if section.settings.policy_link != blank -%}
+        <a href="{{ section.settings.policy_link }}" class="zt-text-link">{{ section.settings.policy_label | escape }} →</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="zt-return__form-wrap">
+    {%- form 'contact', id: form_id, class: 'zt-return__form' -%}
+      <input type="hidden" name="contact[tags]" value="return-exchange">
+      {%- if form.posted_successfully? -%}
+        <div class="zt-return__success" tabindex="-1">
+          <p class="zt-eyebrow">Request received</p>
+          <h2>Thank you. We’ll review your request.</h2>
+          <p>Our customer-care team will contact you using the email or phone number provided.</p>
+        </div>
+      {%- else -%}
+        {%- if form.errors -%}
+          <div class="zt-return__errors" role="alert" tabindex="-1">
+            <h2>Please check the highlighted information.</h2>
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="zt-return__form-heading">
+          <span>Request form</span><span>All fields marked * are required</span>
+        </div>
+
+        <div class="zt-return__fields zt-return__fields--two">
+          <div class="field">
+            <input class="field__input" type="text" id="{{ form_id }}-name" name="contact[Name]" value="{{ form.name | escape }}" autocomplete="name" required placeholder="Full name">
+            <label class="field__label" for="{{ form_id }}-name">Full name *</label>
+          </div>
+          <div class="field">
+            <input class="field__input" type="email" id="{{ form_id }}-email" name="contact[email]" value="{{ form.email | escape }}" autocomplete="email" autocapitalize="off" required placeholder="Email">
+            <label class="field__label" for="{{ form_id }}-email">Email *</label>
+          </div>
+        </div>
+
+        <div class="zt-return__fields zt-return__fields--two">
+          <div class="field">
+            <input class="field__input" type="tel" id="{{ form_id }}-phone" name="contact[Phone]" value="{{ form.phone | escape }}" autocomplete="tel" placeholder="Phone number">
+            <label class="field__label" for="{{ form_id }}-phone">Phone number</label>
+          </div>
+          <div class="field">
+            <input class="field__input" type="text" id="{{ form_id }}-order" name="contact[Order number]" required placeholder="Order number">
+            <label class="field__label" for="{{ form_id }}-order">Order number *</label>
+          </div>
+        </div>
+
+        <div class="zt-return__fields zt-return__fields--two">
+          <div class="zt-return__select-wrap">
+            <label for="{{ form_id }}-action">Requested action *</label>
+            <select id="{{ form_id }}-action" name="contact[Requested action]" required>
+              <option value="" selected disabled>Select an option</option>
+              <option value="Return">Return</option>
+              <option value="Exchange">Exchange</option>
+            </select>
+          </div>
+          <div class="field">
+            <input class="field__input" type="text" id="{{ form_id }}-products" name="contact[Products]" required placeholder="Products">
+            <label class="field__label" for="{{ form_id }}-products">Product names and sizes *</label>
+          </div>
+        </div>
+
+        <div class="field zt-return__message">
+          <textarea class="text-area field__input" rows="7" id="{{ form_id }}-reason" name="contact[Reason]" required placeholder="Reason and requested replacement size">{{ form.body }}</textarea>
+          <label class="field__label" for="{{ form_id }}-reason">Reason and requested replacement size *</label>
+        </div>
+
+        <label class="zt-return__consent">
+          <input type="checkbox" name="contact[Policy accepted]" value="Yes" required>
+          <span>I have read and accept the Return & Exchange Policy. *</span>
+        </label>
+
+        <button type="submit" class="button zt-return__submit">Send request <span aria-hidden="true">→</span></button>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ziad return form",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Customer care" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Start a return or exchange." },
+    { "type": "richtext", "id": "text", "label": "Intro text", "default": "<p>Complete the form with your order details. Our team will review your request and contact you with the next step.</p>" },
+    { "type": "text", "id": "policy_label", "label": "Policy link label", "default": "Read the full policy" },
+    { "type": "url", "id": "policy_link", "label": "Policy link" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "Ziad return form" }]
+}
+{% endschema %}

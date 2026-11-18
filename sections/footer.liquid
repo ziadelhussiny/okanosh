@@ -87,7 +87,7 @@
                       {{ block.settings.subtext }}
                     </div>
                   {%- when 'link_list' -%}
-                    {%- if block.settings.menu != blank -%}
+                    {%- if block.settings.menu != blank and block.settings.menu.links.size > 0 -%}
                       <ul class="footer-block__details-content list-unstyled">
                         {%- for link in block.settings.menu.links -%}
                           <li>
@@ -99,6 +99,32 @@
                             </a>
                           </li>
                         {%- endfor -%}
+                      </ul>
+                    {%- elsif block.settings.heading contains 'Customer' -%}
+                      {%- liquid
+                        assign refund_url = shop.refund_policy.url | default: '/policies/refund-policy'
+                        assign shipping_url = shop.shipping_policy.url | default: '/policies/shipping-policy'
+                        assign privacy_url = shop.privacy_policy.url | default: '/policies/privacy-policy'
+                        assign terms_url = shop.terms_of_service.url | default: '/policies/terms-of-service'
+                      -%}
+                      <ul class="footer-block__details-content list-unstyled">
+                        <li><a href="/pages/about-us" class="link link--text list-menu__item list-menu__item--link">About Us</a></li>
+                        <li><a href="/pages/return-exchange-form" class="link link--text list-menu__item list-menu__item--link">Start a Return or Exchange</a></li>
+                        <li><a href="{{ refund_url }}" class="link link--text list-menu__item list-menu__item--link">Return & Exchange Policy</a></li>
+                        <li><a href="{{ shipping_url }}" class="link link--text list-menu__item list-menu__item--link">Shipping Policy</a></li>
+                        <li><a href="{{ privacy_url }}" class="link link--text list-menu__item list-menu__item--link">Privacy Policy</a></li>
+                        <li><a href="{{ terms_url }}" class="link link--text list-menu__item list-menu__item--link">Terms of Service</a></li>
+                        <li><a href="/pages/contact" class="link link--text list-menu__item list-menu__item--link">Contact Us</a></li>
+                      </ul>
+                    {%- else -%}
+                      <ul class="footer-block__details-content list-unstyled">
+                        <li><a href="/collections/new-arrivals" class="link link--text list-menu__item list-menu__item--link">New arrivals</a></li>
+                        <li><a href="/collections/bestsellers" class="link link--text list-menu__item list-menu__item--link">Bestsellers</a></li>
+                        <li><a href="{{ routes.all_products_collection_url }}" class="link link--text list-menu__item list-menu__item--link">Shop All</a></li>
+                        <li><a href="/collections/sets" class="link link--text list-menu__item list-menu__item--link">Sets</a></li>
+                        <li><a href="/collections/tops" class="link link--text list-menu__item list-menu__item--link">Tops & Shirts</a></li>
+                        <li><a href="/collections/pants" class="link link--text list-menu__item list-menu__item--link">Pants & Dresses</a></li>
+                        <li><a href="/collections/sale" class="link link--text list-menu__item list-menu__item--link">Sale</a></li>
                       </ul>
                     {%- endif -%}
                   {%- when 'brand_information' -%}

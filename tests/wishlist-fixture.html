@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ziad wishlist browser fixture</title>
+    <link rel="stylesheet" href="../assets/ziad-theme.css">
+    <style>
+      :root { --font-heading-family: Georgia, serif; --font-body-family: Arial, sans-serif; }
+      body { margin: 0; padding: 3rem; font-family: var(--font-body-family); }
+      .fixture-products { display: grid; max-width: 72rem; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .fixture-product { position: relative; min-height: 28rem; padding: 2rem; background: #E5CBC3; }
+      .header__icon--wishlist { position: fixed; z-index: 2; top: 2rem; right: 2rem; width: 4.4rem; height: 4.4rem; }
+    </style>
+  </head>
+  <body>
+    <button type="button" class="header__icon--wishlist" data-ziad-wishlist-open aria-label="Open wishlist" aria-haspopup="dialog" aria-controls="ZiadWishlistDrawer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S4 16 4 9.8A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8 3.6c0 6.2-8 10.7-8 10.7Z"/></svg>
+      <span class="zt-wishlist-count" data-ziad-wishlist-count hidden>0</span>
+    </button>
+
+    <main>
+      <h1>Wishlist interaction fixture</h1>
+      <div class="fixture-products">
+        <article class="fixture-product">
+          <h2>Colorful Cardigan</h2>
+          <ziad-wishlist-button class="zt-wishlist-button zt-wishlist-button--product" data-product-handle="colorful-cardigan" data-product-title="Colorful Cardigan" data-product-url="/products/colorful-cardigan" data-product-price="LE 2,200 EGP" data-product-image="">
+            <button type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 20.5S4 16 4 9.8A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8 3.6c0 6.2-8 10.7-8 10.7Z"/></svg><span data-ziad-wishlist-label>Save to wishlist</span></button>
+          </ziad-wishlist-button>
+        </article>
+        <article class="fixture-product"><h2>Denim Beaded Jacket</h2></article>
+      </div>
+    </main>
+
+    <ziad-wishlist-drawer>
+      <dialog class="zt-wishlist-drawer" id="ZiadWishlistDrawer" aria-labelledby="ZiadWishlistHeading">
+        <div class="zt-wishlist-drawer__header"><div><p class="zt-eyebrow">Saved for later</p><h2 id="ZiadWishlistHeading">Your wishlist <span data-ziad-wishlist-drawer-count></span></h2></div><button type="button" class="zt-wishlist-drawer__close" data-ziad-wishlist-close aria-label="Close wishlist">×</button></div>
+        <div class="zt-wishlist-drawer__body"><div class="zt-wishlist-drawer__items" data-ziad-wishlist-items></div><div class="zt-wishlist-drawer__empty" data-ziad-wishlist-empty><p class="zt-wishlist-drawer__empty-title">Nothing saved yet.</p></div></div>
+      </dialog>
+    </ziad-wishlist-drawer>
+    <ziad-recently-viewed id="RecentFixture" class="zt-section zt-recent" data-current-handle="colorful-cardigan" data-current-title="Colorful Cardigan" data-current-url="/products/colorful-cardigan" data-current-price="LE 2,200 EGP" data-current-image="" data-max-items="4" hidden>
+      <div class="zt-section__inner"><div class="zt-recent__header"><h2 class="zt-display">Recently viewed.</h2></div><div class="zt-recent__list" data-ziad-recently-viewed-list role="list"></div></div>
+    </ziad-recently-viewed>
+    <script>
+      if (new URLSearchParams(location.search).get('product') === 'denim') {
+        const recent = document.getElementById('RecentFixture');
+        recent.dataset.currentHandle = 'denim-beaded-jacket';
+        recent.dataset.currentTitle = 'Denim Beaded Jacket';
+        recent.dataset.currentUrl = '/products/denim-beaded-jacket';
+        recent.dataset.currentPrice = 'LE 4,000 EGP';
+      }
+    </script>
+    <script src="../assets/ziad-theme.js"></script>
+  </body>
+</html>

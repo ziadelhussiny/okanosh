@@ -1,0 +1,49 @@
+<section class="zt-value-strip color-{{ section.settings.color_scheme }}" aria-label="{{ section.settings.accessibility_label | escape }}">
+  <div class="zt-value-strip__inner">
+    {%- for block in section.blocks -%}
+      <div class="zt-value-strip__item" {{ block.shopify_attributes }}>
+        <span class="zt-value-strip__icon" aria-hidden="true">
+          {%- case block.settings.icon -%}
+            {%- when 'delivery' -%}
+              <svg viewBox="0 0 24 24"><path d="M3 6.5h11v10H3zM14 10h4l3 3v3.5h-7zM7.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM17.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+            {%- when 'exchange' -%}
+              <svg viewBox="0 0 24 24"><path d="m7 7-4 4 4 4M3 11h13a5 5 0 0 1 5 5v1M17 3l4 4-4 4M21 7H8a5 5 0 0 0-5 5"/></svg>
+            {%- when 'secure' -%}
+              <svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.2c0 4.7 3 8.3 7.5 9.8 4.5-1.5 7.5-5.1 7.5-9.8V6zM9 12l2 2 4-4"/></svg>
+            {%- else -%}
+              <svg viewBox="0 0 24 24"><path d="M12 21s8-4.5 8-11a4.5 4.5 0 0 0-8-2.7A4.5 4.5 0 0 0 4 10c0 6.5 8 11 8 11Z"/></svg>
+          {%- endcase -%}
+        </span>
+        <div>
+          <p class="zt-value-strip__title">{{ block.settings.heading | escape }}</p>
+          {%- if block.settings.text != blank -%}<p class="zt-value-strip__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ziad value strip",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "accessibility_label", "label": "Accessibility label", "default": "Shopping benefits" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-4" }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "delivery", "options": [{ "value": "delivery", "label": "Delivery" }, { "value": "exchange", "label": "Exchange" }, { "value": "secure", "label": "Secure payment" }, { "value": "heart", "label": "Heart" }] },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Complimentary delivery" },
+        { "type": "text", "id": "text", "label": "Text", "default": "On orders over 3,000 L.E." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Ziad value strip", "blocks": [{ "type": "value" }, { "type": "value" }, { "type": "value" }, { "type": "value" }] }]
+}
+{% endschema %}

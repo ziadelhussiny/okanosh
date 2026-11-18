@@ -141,6 +141,8 @@
                       {{ form | payment_terms }}
                     {%- endform -%}
                   </div>
+                {%- when 'wishlist' -%}
+                  {% render 'ziad-wishlist-button', product: product, context: 'product', block: block %}
                 {%- when 'inventory' -%}
                   <p
                     class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
@@ -212,6 +214,8 @@
                   {{ block.settings.custom_liquid }}
                 {%- when 'size_chart' -%}
                   {% render 'ziad-size-chart', product: product, block: block, section: section %}
+                {%- when 'purchase_assurance' -%}
+                  {% render 'ziad-purchase-assurance', block: block %}
                 {%- when 'collapsible_tab' -%}
                   <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                     <details id="Details-{{ block.id }}-{{ section.id }}">
@@ -752,6 +756,8 @@
   </product-component>
 </product-info>
 
+{% render 'ziad-sticky-purchase', product: product, section: section %}
+
 {% schema %}
 {
   "name": "t:sections.main-product.name",
@@ -801,6 +807,11 @@
     {
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
+      "limit": 1
+    },
+    {
+      "type": "wishlist",
+      "name": "Wishlist",
       "limit": 1
     },
     {
@@ -1002,6 +1013,19 @@
           "label": "Fallback size chart page",
           "info": "Used only when this product has no custom.size_chart or custom.size metafield."
         }
+      ]
+    },
+    {
+      "type": "purchase_assurance",
+      "name": "Purchase assurance",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "delivery_heading", "label": "Delivery heading", "default": "Complimentary delivery" },
+        { "type": "text", "id": "delivery_text", "label": "Delivery text", "default": "On orders over 3,000 L.E." },
+        { "type": "text", "id": "exchange_heading", "label": "Exchange heading", "default": "Easy exchange" },
+        { "type": "text", "id": "exchange_text", "label": "Exchange text", "default": "Contact us within 24 hours" },
+        { "type": "text", "id": "payment_heading", "label": "Payment heading", "default": "Secure payment" },
+        { "type": "text", "id": "payment_text", "label": "Payment text", "default": "Protected checkout" }
       ]
     },
     {

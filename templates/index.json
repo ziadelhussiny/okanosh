@@ -17,6 +17,17 @@
         "color_scheme": "scheme-2"
       }
     },
+    "ziad_values": {
+      "type": "ziad-value-strip",
+      "blocks": {
+        "delivery": { "type": "value", "settings": { "icon": "delivery", "heading": "Complimentary delivery", "text": "On orders over 3,000 L.E." } },
+        "exchange": { "type": "value", "settings": { "icon": "exchange", "heading": "Easy exchange", "text": "Contact us within 24 hours" } },
+        "secure": { "type": "value", "settings": { "icon": "secure", "heading": "Secure checkout", "text": "Protected online payments" } },
+        "local": { "type": "value", "settings": { "icon": "heart", "heading": "Designed in Egypt", "text": "Made for your everyday" } }
+      },
+      "block_order": ["delivery", "exchange", "secure", "local"],
+      "settings": { "accessibility_label": "Shopping benefits", "color_scheme": "scheme-4" }
+    },
     "ziad_collections": {
       "type": "ziad-collections",
       "blocks": {
@@ -46,6 +57,24 @@
         "quick_add": "standard",
         "view_all_label": "View the full edit",
         "color_scheme": "scheme-1"
+      }
+    },
+    "ziad_look": {
+      "type": "ziad-shop-the-look",
+      "blocks": {
+        "look_1": { "type": "product", "settings": {} },
+        "look_2": { "type": "product", "settings": {} },
+        "look_3": { "type": "product", "settings": {} }
+      },
+      "block_order": ["look_1", "look_2", "look_3"],
+      "settings": {
+        "image": "shopify://shop_images/DSC_6513.jpg",
+        "caption": "Okanosh / The FW27 edit",
+        "eyebrow": "Styled together",
+        "heading": "Shop the look.",
+        "text": "<p>A complete outfit, selected by the Okanosh studio.</p>",
+        "collection": "fw-27",
+        "color_scheme": "scheme-4"
       }
     },
     "ziad_editorial": {
@@ -82,5 +111,5 @@
       }
     }
   },
-  "order": ["ziad_hero", "ziad_collections", "ziad_product_edit", "ziad_editorial", "ziad_community"]
+  "order": ["ziad_hero", "ziad_values", "ziad_collections", "ziad_product_edit", "ziad_look", "ziad_editorial", "ziad_community"]
 }

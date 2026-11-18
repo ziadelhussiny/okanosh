@@ -282,6 +282,13 @@
       </div>
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
+      <button type="button" class="header__icon header__icon--wishlist link focus-inset" data-ziad-wishlist-open aria-label="Open wishlist" aria-haspopup="dialog" aria-controls="ZiadWishlistDrawer">
+        <span class="svg-wrapper">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S4 16 4 9.8A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8 3.6c0 6.2-8 10.7-8 10.7Z"/></svg>
+        </span>
+        <span class="zt-wishlist-count" data-ziad-wishlist-count hidden>0</span>
+      </button>
+
       {%- if shop.customer_accounts_enabled -%}
         <shopify-account
           menu="{{ settings.customer_account_menu | default: 'customer-account-main-menu' }}"
