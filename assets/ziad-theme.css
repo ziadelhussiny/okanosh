@@ -328,7 +328,19 @@ ziad-wishlist-drawer { display: block; }
 }
 .zt-product-edit__toggle[aria-pressed='true'] { background: var(--ziad-accent); color: var(--ziad-background); }
 .zt-product-edit__grid { margin: 0; }
-.zt-product-edit__grid--product .media img { object-fit: cover; }
+.zt-product-edit .zt-product-edit__grid--product .card .card__inner .card__media {
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.zt-product-edit .zt-product-edit__grid--product .card .media,
+.zt-product-edit .zt-product-edit__grid--product .card .media > img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.zt-product-edit__grid--product .media > img { object-fit: cover; }
 .zt-product-edit__grid--product .media--hover-effect > img:first-child:not(:only-child) { opacity: 0; }
 .zt-product-edit__grid--product .media--hover-effect > img:nth-child(2) { opacity: 1; transform: none; }
 .zt-product-edit .quick-add__submit { min-height: 4.4rem; border-radius: 0; }
