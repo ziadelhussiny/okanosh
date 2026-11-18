@@ -6,7 +6,13 @@
 <section class="zt-hero color-{{ section.settings.color_scheme }}" aria-labelledby="ZiadHeroHeading-{{ section.id }}">
   <div class="zt-hero__media zt-hero__desktop-media">
     {%- if section.settings.desktop_media_type == 'video' -%}
-      {%- if section.settings.desktop_video != blank -%}
+      {%- if section.settings.desktop_video == blank and section.settings.desktop_video_url == blank -%}
+        {%- if section.settings.desktop_image != blank -%}
+          {{ section.settings.desktop_image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 2000, 2400', sizes: '50vw', loading: 'eager', fetchpriority: 'high', alt: desktop_alt }}
+        {%- else -%}
+          <div class="zt-placeholder">{{ 'hero-apparel-1' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+      {%- elsif section.settings.desktop_video != blank -%}
         {{ section.settings.desktop_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, image_size: '2000x' }}
       {%- elsif section.settings.desktop_video_url != blank -%}
         <video autoplay loop muted playsinline{% if section.settings.desktop_image != blank %} poster="{{ section.settings.desktop_image | image_url: width: 2000 }}"{% endif %}>
@@ -22,7 +28,15 @@
 
   <div class="zt-hero__media zt-hero__mobile-media">
     {%- if section.settings.mobile_media_type == 'video' -%}
-      {%- if section.settings.mobile_video != blank -%}
+      {%- if section.settings.mobile_video == blank and section.settings.mobile_video_url == blank -%}
+        {%- if section.settings.mobile_image != blank -%}
+          {{ section.settings.mobile_image | image_url: width: 1200 | image_tag: widths: '375, 550, 750, 1000, 1200', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: mobile_alt }}
+        {%- elsif section.settings.desktop_image != blank -%}
+          {{ section.settings.desktop_image | image_url: width: 1200 | image_tag: widths: '375, 550, 750, 1000, 1200', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: desktop_alt }}
+        {%- else -%}
+          <div class="zt-placeholder">{{ 'hero-apparel-1' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+      {%- elsif section.settings.mobile_video != blank -%}
         {{ section.settings.mobile_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, image_size: '1000x' }}
       {%- elsif section.settings.mobile_video_url != blank -%}
         <video autoplay loop muted playsinline{% if section.settings.mobile_image != blank %} poster="{{ section.settings.mobile_image | image_url: width: 1000 }}"{% endif %}>

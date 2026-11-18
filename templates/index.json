@@ -120,5 +120,5 @@
       }
     }
   },
-  "order": ["ziad_hero", "ziad_values", "ziad_collections", "ziad_product_edit", "ziad_look", "ziad_editorial", "ziad_community"]
+  "order": ["ziad_hero", "ziad_collections", "ziad_product_edit", "ziad_editorial", "ziad_community"]
 }

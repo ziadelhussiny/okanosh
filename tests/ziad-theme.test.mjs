@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
+const parseJsonc = (source) => JSON.parse(source.replace(/\/\*[\s\S]*?\*\//g, '').trim());
 
 test('theme is branded as ziad theme and loads its global assets', async () => {
   const [schema, layout] = await Promise.all([
@@ -15,22 +16,21 @@ test('theme is branded as ziad theme and loads its global assets', async () => {
   assert.match(layout, /ziad-theme\.js/);
 });
 
-test('homepage uses the ziad responsive commerce sections', async () => {
-  const template = JSON.parse(await read('templates/index.json'));
-  const types = Object.values(template.sections).map((section) => section.type);
+test('homepage uses a focused ziad editorial commerce sequence', async () => {
+  const source = await read('templates/index.json');
+  const template = parseJsonc(source);
+  const types = template.order.map((id) => template.sections[id].type);
 
   assert.deepEqual(types, [
     'ziad-hero',
-    'ziad-value-strip',
     'ziad-collections',
     'ziad-product-edit',
-    'ziad-shop-the-look',
     'ziad-editorial-story',
     'ziad-community',
   ]);
 });
 
-test('homepage includes an editable value strip and shoppable editorial look', async () => {
+test('optional premium sections remain editable in the theme library', async () => {
   const [valueStrip, shopTheLook] = await Promise.all([
     read('sections/ziad-value-strip.liquid'),
     read('sections/ziad-shop-the-look.liquid'),
@@ -142,7 +142,7 @@ test('product pages include a private on-device recently viewed rail', async () 
     read('assets/ziad-theme.js'),
   ]);
 
-  const template = JSON.parse(productTemplate);
+  const template = parseJsonc(productTemplate);
   assert.equal(template.sections['recently-viewed'].type, 'ziad-recently-viewed');
   assert.ok(template.order.includes('recently-viewed'));
   assert.match(section, /data-current-handle/);
@@ -172,7 +172,7 @@ test('theme ships a dedicated return and exchange request page', async () => {
     read('templates/page.return-exchange.json'),
     read('sections/ziad-return-form.liquid'),
   ]);
-  const template = JSON.parse(templateSource);
+  const template = parseJsonc(templateSource);
 
   assert.equal(template.sections.main.type, 'ziad-return-form');
   assert.match(form, /form 'contact'/);
@@ -181,4 +181,50 @@ test('theme ships a dedicated return and exchange request page', async () => {
   assert.match(form, /contact\[Products\]/);
   assert.match(form, /contact\[Reason\]/);
   assert.match(form, /posted_successfully/);
+});
+
+test('Dawn color schemes are not overridden by the custom global stylesheet', async () => {
+  const css = await read('assets/ziad-theme.css');
+
+  assert.doesNotMatch(css, /body\s*,\s*\.gradient\s*\{/);
+  assert.match(css, /\.zt-section\s*\{[^}]*background:\s*rgb\(var\(--color-background\)\)/s);
+  assert.match(css, /\.zt-section\s*\{[^}]*color:\s*rgb\(var\(--color-foreground\)\)/s);
+});
+
+test('theme settings use an editorial display font with a readable retail UI font', async () => {
+  const settings = parseJsonc(await read('config/settings_data.json'));
+  const current = settings.current;
+
+  assert.equal(current.type_header_font, 'aleo_n4');
+  assert.equal(current.type_body_font, 'assistant_n4');
+  assert.equal(current.page_width, 1600);
+  assert.equal(current.cart_type, 'drawer');
+  assert.equal(current.animations_reveal_on_scroll, false);
+});
+
+test('custom commerce elements participate in normal block layout', async () => {
+  const css = await read('assets/ziad-theme.css');
+
+  assert.match(css, /ziad-product-view\s*,[\s\S]*ziad-recently-viewed[\s\S]*display:\s*block/);
+});
+
+test('model and product view toggle visibly swaps primary and secondary product media', async () => {
+  const css = await read('assets/ziad-theme.css');
+
+  assert.match(css, /zt-product-edit__grid--product[^{]*img:first-child[^{]*\{[^}]*opacity:\s*0/s);
+  assert.match(css, /zt-product-edit__grid--product[^{]*img:nth-child\(2\)[^{]*\{[^}]*opacity:\s*1/s);
+});
+
+test('responsive hero falls back to an image when selected video media is unavailable', async () => {
+  const hero = await read('sections/ziad-hero.liquid');
+
+  assert.match(hero, /desktop_video == blank and section\.settings\.desktop_video_url == blank/);
+  assert.match(hero, /mobile_video == blank and section\.settings\.mobile_video_url == blank/);
+});
+
+test('mobile hero media has a bounded viewport-aware height', async () => {
+  const css = await read('assets/ziad-theme.css');
+
+  assert.match(css, /\.zt-hero__mobile-media\s*\{[^}]*height:\s*clamp\([^;]+svh[^;]+\)/s);
+  assert.match(css, /\.zt-hero__mobile-media\s*\{[^}]*min-height:\s*0/s);
 });

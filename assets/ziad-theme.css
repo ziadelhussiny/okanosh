@@ -10,8 +10,7 @@
 
 html { scroll-behavior: smooth; }
 
-body,
-.gradient {
+body {
   background: var(--ziad-background);
   color: var(--ziad-ink);
 }
@@ -92,9 +91,14 @@ textarea { letter-spacing: 0.01em; }
 .template-search__header { margin-bottom: clamp(4rem, 7vw, 8rem); }
 
 .zt-section {
-  background: var(--ziad-background);
-  color: var(--ziad-ink);
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
 }
+
+ziad-product-view,
+ziad-recently-viewed,
+ziad-sticky-purchase,
+ziad-wishlist-drawer { display: block; }
 
 .zt-section__inner {
   width: min(100%, 160rem);
@@ -283,6 +287,8 @@ textarea { letter-spacing: 0.01em; }
 .zt-product-edit__grid .card__media { transition: padding 220ms ease, background 220ms ease; }
 .zt-product-edit__grid--product .card__media { padding: clamp(1rem, 2vw, 3rem); background: var(--ziad-detail); }
 .zt-product-edit__grid--product .media img { object-fit: contain; }
+.zt-product-edit__grid--product .media--hover-effect > img:first-child:not(:only-child) { opacity: 0; }
+.zt-product-edit__grid--product .media--hover-effect > img:nth-child(2) { opacity: 1; transform: none; }
 .zt-product-edit .quick-add__submit { min-height: 4.4rem; border-radius: 0; }
 
 .zt-look { padding: 0; }
@@ -449,7 +455,11 @@ textarea { letter-spacing: 0.01em; }
 @media screen and (max-width: 989px) {
   .zt-hero { min-height: auto; }
   .zt-hero__desktop-media { display: none; }
-  .zt-hero__mobile-media { display: block; min-height: 42rem; }
+  .zt-hero__mobile-media {
+    display: block;
+    height: clamp(48rem, 68svh, 68rem);
+    min-height: 0;
+  }
   .zt-hero__content { padding: 3.2rem var(--ziad-gutter) 4rem; }
   .zt-hero__heading { font-size: clamp(4.4rem, 12vw, 7rem); }
   .zt-collections__rail,
