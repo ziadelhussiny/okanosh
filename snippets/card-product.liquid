@@ -142,12 +142,7 @@
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                   class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
                 >
-                  {%- if ziad_home_card and card_product.price_varies == false and card_product.compare_at_price_varies == false -%}
-                    {%- assign savings = card_product.compare_at_price | minus: card_product.price | times: 100.0 | divided_by: card_product.compare_at_price | round -%}
-                    <span class="visually-hidden">{{ 'products.product.on_sale' | t }} </span>−{{ savings }}%
-                  {%- else -%}
-                    {{- 'products.product.on_sale' | t -}}
-                  {%- endif -%}
+                  {{- 'products.product.on_sale' | t -}}
                 </span>
               {%- endif -%}
             </div>
@@ -215,19 +210,6 @@
               {%- endif -%}
 
               {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-              {%- if ziad_home_card -%}
-                {%- for option in card_product.options_with_values -%}
-                  {%- assign option_name = option.name | downcase -%}
-                  {%- if option_name == 'size' or option_name == 'المقاس' -%}
-                    <ul class="zt-card-sizes" role="list" aria-label="{{ option.name | escape }}">
-                      {%- for value in option.values -%}
-                        <li{% unless value.available %} class="is-unavailable"{% endunless %}>{{ value.name | escape }}</li>
-                      {%- endfor -%}
-                    </ul>
-                    {%- break -%}
-                  {%- endif -%}
-                {%- endfor -%}
-              {%- endif -%}
               {%- if card_product.quantity_price_breaks_configured? -%}
                 {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                   {% liquid

@@ -51,11 +51,12 @@
       "type": "ziad-product-edit",
       "settings": {
         "eyebrow": "",
-        "heading": "New Arrivals",
+        "heading": "New",
+        "heading_accent": "Arrivals",
         "collection": "fw-27",
         "products_to_show": 4,
         "enable_view_toggle": false,
-        "quick_add": "standard",
+        "quick_add": "none",
         "view_all_label": "View all",
         "color_scheme": "scheme-1"
       }
