@@ -103,7 +103,7 @@
         "signup": { "type": "email_form", "settings": {} }
       },
       "block_order": ["heading", "intro", "signup"],
-      "settings": { "color_scheme": "scheme-1", "full_width": true, "padding_top": 32, "padding_bottom": 32 }
+      "settings": { "color_scheme": "scheme-1", "full_width": true, "padding_top": 20, "padding_bottom": 20 }
     }
   },
   "order": ["ziad_hero", "ziad_collections", "ziad_product_edit", "ziad_editorial", "ziad_community", "ziad_newsletter"]

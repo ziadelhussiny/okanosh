@@ -51,7 +51,7 @@ textarea { letter-spacing: 0.01em; }
 .header__menu-item[href*='/collections/sale'],
 .menu-drawer__menu-item[href*='/collections/sale'] { color: var(--ziad-accent); font-weight: 700; }
 .header__icon--wishlist { position: relative; border: 0; background: transparent; color: inherit; cursor: pointer; }
-.header__icon--wishlist svg { width: 2rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5; }
+.header__icons .header__icon--wishlist svg { width: 1.6rem; height: 1.6rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5; }
 .zt-wishlist-count { position: absolute; top: .2rem; right: .1rem; display: grid; min-width: 1.7rem; height: 1.7rem; place-items: center; border-radius: 50%; background: var(--ziad-accent); color: var(--ziad-background); font-size: .9rem; line-height: 1; }
 .zt-wishlist-count[hidden] { display: none; }
 
@@ -617,7 +617,18 @@ ziad-wishlist-drawer { display: block; }
 .zt-collections__rail { gap: clamp(1.2rem, 1.7vw, 2.8rem); }
 .zt-collections .zt-section__inner,
 .zt-product-edit .zt-section__inner,
-.zt-community .zt-section__inner { padding-block: min(var(--ziad-section-space), 4.8rem); }
+.zt-community .zt-section__inner { padding-block: clamp(1.6rem, calc(var(--ziad-section-space) * .4), 3.2rem); }
+.zt-collections__header,
+.zt-product-edit__header,
+.zt-community__header { margin-bottom: 2rem; }
+
+@media screen and (max-width: 749px) {
+  .zt-collections .zt-section__inner,
+  .zt-product-edit .zt-section__inner,
+  .zt-community .zt-section__inner {
+    padding-block: clamp(1.2rem, calc(var(--ziad-mobile-space, 40px) * .45), 2rem);
+  }
+}
 .zt-collection-card__media { aspect-ratio: 5 / 8; }
 .zt-collection-card__media::after {
   content: '';
