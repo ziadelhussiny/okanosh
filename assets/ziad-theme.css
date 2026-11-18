@@ -562,13 +562,7 @@ ziad-wishlist-drawer { display: block; }
 }
 
 .zt-hero {
-  grid-template-columns: minmax(0, 1fr);
-  isolation: isolate;
-}
-
-.zt-hero__media,
-.zt-hero__content {
-  grid-area: 1 / 1;
+  grid-template-columns: minmax(0, 54fr) minmax(0, 46fr);
 }
 
 .zt-hero__media img,
@@ -576,16 +570,8 @@ ziad-wishlist-drawer { display: block; }
   object-position: center 35%;
 }
 
-.zt-hero__media::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgb(248 243 239 / 92%), rgb(248 243 239 / 75%) 32%, transparent 70%);
-  pointer-events: none;
-}
-
-.zt-hero__content { z-index: 1; align-items: flex-start; }
-.zt-hero__heading { max-width: 16ch; }
+.zt-hero__content { align-items: flex-start; }
+.zt-hero__heading { max-width: 11ch; font-style: italic; }
 .zt-hero__text { margin: 1.4rem 0 2rem; }
 .zt-collections .zt-display,
 .zt-product-edit .zt-display,
@@ -593,16 +579,35 @@ ziad-wishlist-drawer { display: block; }
 .zt-collections .zt-section__inner,
 .zt-product-edit .zt-section__inner,
 .zt-community .zt-section__inner { padding-block: min(var(--ziad-section-space), 4.8rem); }
-.zt-collection-card__media { aspect-ratio: 4 / 3; }
+.zt-collection-card__media { aspect-ratio: 1; }
+.zt-collection-card__label {
+  position: static;
+  justify-content: center;
+  gap: .6rem;
+  background: transparent;
+  color: var(--ziad-ink);
+  font-weight: 500;
+}
+.zt-collection-card__label [aria-hidden] { display: none; }
 .zt-community__rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.zt-review { min-height: 22rem; }
+.zt-review { min-height: 20rem; background: transparent; }
+.zt-review--image { flex-direction: row; color: var(--ziad-ink); }
+.zt-review--image > img {
+  position: static;
+  width: 40%;
+  height: auto;
+  align-self: stretch;
+  object-fit: cover;
+}
+.zt-review__overlay { display: none; }
+.zt-review__content { justify-content: center; }
+.zt-review blockquote { font-size: clamp(1.6rem, 1.7vw, 2.2rem); }
 
 @media screen and (max-width: 989px) {
-  .zt-hero__content { justify-content: flex-end; }
-  .zt-hero__media::after {
-    background: linear-gradient(0deg, rgb(248 243 239 / 96%), rgb(248 243 239 / 72%) 35%, transparent 75%);
-  }
-  .zt-hero__heading { font-size: min(10vw, var(--hero-mobile-title-size, 44px)); }
+  .zt-hero { grid-template-columns: minmax(0, 1fr); }
+  .zt-hero__content { align-items: center; text-align: center; }
+  .zt-hero__heading { max-width: none; font-size: min(10vw, var(--hero-mobile-title-size, 44px)); }
+  .zt-hero__button { align-self: center; }
   .zt-collection-card { flex-basis: 44%; }
 }
 

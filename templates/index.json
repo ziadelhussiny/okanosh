@@ -18,11 +18,12 @@
         "mobile_media_type": "video",
         "mobile_image": "shopify://shop_images/DSC_6603.jpg",
         "mobile_video_url": "https://cdn.shopify.com/videos/c/o/v/4517952203c1473a85761ffd7628f24d.mp4",
-        "eyebrow": "KNITWEAR & DENIM",
-        "heading": "Everyday Looks with a Cairene Spirit",
-        "text": "<p>Comfortable, modern pieces for your everyday wardrobe.</p>",
-        "copy_color": "#352A25",
-        "cta_color": "#BC7969",
+        "eyebrow": "",
+        "heading": "The Okanosh Edit",
+        "text": "",
+        "panel_color": "#BC7969",
+        "copy_color": "#F8F3EF",
+        "cta_color": "#F8F3EF",
         "cta_text": "#352A25",
         "button_label": "Shop new arrivals",
         "button_link": "shopify://collections/fw-27",
@@ -32,10 +33,10 @@
     "ziad_collections": {
       "type": "ziad-collections",
       "blocks": {
-        "pullovers": { "type": "collection", "settings": { "collection": "pullover", "title": "Pullovers" } },
+        "pullovers": { "type": "collection", "settings": { "collection": "pullover", "title": "Knitwear" } },
         "jackets": { "type": "collection", "settings": { "collection": "jackets", "title": "Jackets" } },
         "cardigans": { "type": "collection", "settings": { "collection": "cardigans", "title": "Cardigans" } },
-        "tops": { "type": "collection", "settings": { "collection": "tops", "title": "Tops & shirts" } }
+        "tops": { "type": "collection", "settings": { "collection": "tops", "title": "Shirts" } }
       },
       "block_order": ["pullovers", "jackets", "cardigans", "tops"],
       "settings": {
@@ -91,7 +92,17 @@
         "link_label": "See more from our community",
         "color_scheme": "scheme-3"
       }
+    },
+    "ziad_newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "heading": "Join the Okanosh Community", "heading_size": "h2" } },
+        "intro": { "type": "paragraph", "settings": { "text": "<p>Be the first to know about new arrivals, stories and exclusive offers.</p>" } },
+        "signup": { "type": "email_form", "settings": {} }
+      },
+      "block_order": ["heading", "intro", "signup"],
+      "settings": { "color_scheme": "scheme-1", "full_width": true, "padding_top": 32, "padding_bottom": 32 }
     }
   },
-  "order": ["ziad_hero", "ziad_collections", "ziad_product_edit", "ziad_editorial", "ziad_community"]
+  "order": ["ziad_hero", "ziad_collections", "ziad_product_edit", "ziad_editorial", "ziad_community", "ziad_newsletter"]
 }

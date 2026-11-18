@@ -27,6 +27,7 @@ test('homepage uses a focused ziad editorial commerce sequence', async () => {
     'ziad-product-edit',
     'ziad-editorial-story',
     'ziad-community',
+    'newsletter',
   ]);
 });
 
