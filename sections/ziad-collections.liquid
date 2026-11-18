@@ -3,7 +3,7 @@
     <div class="zt-collections__header">
       <div>
         {%- if section.settings.eyebrow != blank -%}<p class="zt-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
-        <h2 class="zt-display" id="ZiadCollectionsHeading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        <h2 class="zt-display" id="ZiadCollectionsHeading-{{ section.id }}">{{ section.settings.heading | escape }}{% if section.settings.heading_accent != blank %} <em class="zt-collections__accent">{{ section.settings.heading_accent | escape }}</em>{% endif %}</h2>
       </div>
       {%- if section.settings.link_label != blank -%}<a class="zt-text-link" href="{{ routes.collections_url }}">{{ section.settings.link_label | escape }} →</a>{%- endif -%}
     </div>
@@ -20,7 +20,12 @@
               {{ 'collection-apparel-1' | placeholder_svg_tag }}
             {%- endif -%}
           </div>
-          <span class="zt-collection-card__label"><span>{{ block.settings.title | default: collection.title | escape }}</span><span aria-hidden="true">→</span></span>
+          <span class="zt-collection-card__label">
+            <span>{{ block.settings.title | default: collection.title | escape }}</span>
+            {%- if collection != blank -%}
+              <span class="zt-collection-card__count">{{ collection.all_products_count }} {% if collection.all_products_count == 1 %}piece{% else %}pieces{% endif %}</span>
+            {%- endif -%}
+          </span>
         </a>
       {%- endfor -%}
     </div>
@@ -36,6 +41,7 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Explore Okanosh" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Shop the collections." },
+    { "type": "text", "id": "heading_accent", "label": "Italic accent after heading" },
     { "type": "text", "id": "link_label", "label": "View all label", "default": "View all collections" },
     { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 3, "max": 6, "step": 1, "default": 5 },
     { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }

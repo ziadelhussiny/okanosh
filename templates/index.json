@@ -38,10 +38,11 @@
         "cardigans": { "type": "collection", "settings": { "collection": "cardigans", "title": "Cardigans" } },
         "tops": { "type": "collection", "settings": { "collection": "tops", "title": "Shirts" } }
       },
-      "block_order": ["pullovers", "jackets", "cardigans", "tops"],
+        "block_order": ["pullovers", "jackets", "cardigans", "tops"],
       "settings": {
         "eyebrow": "",
-        "heading": "Shop by Collection",
+        "heading": "Shop by",
+        "heading_accent": "Collection",
         "link_label": "",
         "columns_desktop": 4,
         "color_scheme": "scheme-1"

@@ -611,21 +611,42 @@ ziad-wishlist-drawer { display: block; }
 .zt-hero__content { align-items: flex-start; }
 .zt-hero__heading { max-width: 11ch; font-style: italic; }
 .zt-hero__text { margin: 1.4rem 0 2rem; }
-.zt-collections .zt-display,
 .zt-community .zt-display { font-size: clamp(2.8rem, 3.4vw, 4.4rem); }
+.zt-collections .zt-display { font-size: clamp(3.6rem, 5vw, 7.2rem); }
+.zt-collections__accent { color: var(--ziad-accent); }
+.zt-collections__rail { gap: clamp(1.2rem, 1.7vw, 2.8rem); }
 .zt-collections .zt-section__inner,
 .zt-product-edit .zt-section__inner,
 .zt-community .zt-section__inner { padding-block: min(var(--ziad-section-space), 4.8rem); }
-.zt-collection-card__media { aspect-ratio: 1; }
-.zt-collection-card__label {
-  position: static;
-  justify-content: center;
-  gap: .6rem;
-  background: transparent;
-  color: var(--ziad-ink);
-  font-weight: 500;
+.zt-collection-card__media { aspect-ratio: 5 / 8; }
+.zt-collection-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(53 42 37 / 94%), rgb(53 42 37 / 40%) 38%, transparent 76%);
+  pointer-events: none;
 }
-.zt-collection-card__label [aria-hidden] { display: none; }
+.zt-collection-card__label {
+  position: absolute;
+  inset: auto clamp(.9rem, 1.6vw, 2.6rem) clamp(1.2rem, 2vw, 3rem);
+  display: grid;
+  justify-content: start;
+  gap: .65rem;
+  padding: 0;
+  background: transparent;
+  color: var(--ziad-background);
+  font-family: var(--font-heading-family);
+  font-size: clamp(1.8rem, 2.4vw, 3.7rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.zt-collection-card__count {
+  font-family: var(--font-body-family);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
 .zt-community__rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .zt-review { min-height: 20rem; background: transparent; }
 .zt-review--image { flex-direction: row; color: var(--ziad-ink); }
@@ -645,7 +666,7 @@ ziad-wishlist-drawer { display: block; }
   .zt-hero__content { align-items: center; text-align: center; }
   .zt-hero__heading { max-width: none; font-size: min(10vw, var(--hero-mobile-title-size, 44px)); }
   .zt-hero__button { align-self: center; }
-  .zt-collection-card { flex-basis: 44%; }
+  .zt-collections__rail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
 }
 
 @media (prefers-reduced-motion: reduce) {
