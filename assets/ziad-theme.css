@@ -51,7 +51,7 @@ textarea { letter-spacing: 0.01em; }
 .header__menu-item[href*='/collections/sale'],
 .menu-drawer__menu-item[href*='/collections/sale'] { color: var(--ziad-accent); font-weight: 700; }
 .header__icon--wishlist { position: relative; border: 0; background: transparent; color: inherit; cursor: pointer; }
-.header__icons .header__icon--wishlist svg { width: 1.6rem; height: 1.6rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5; }
+.header__icons .header__icon--wishlist .icon { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.15; }
 .zt-wishlist-count { position: absolute; top: .2rem; right: .1rem; display: grid; min-width: 1.7rem; height: 1.7rem; place-items: center; border-radius: 50%; background: var(--ziad-accent); color: var(--ziad-background); font-size: .9rem; line-height: 1; }
 .zt-wishlist-count[hidden] { display: none; }
 
