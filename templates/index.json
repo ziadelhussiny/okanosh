@@ -18,9 +18,12 @@
         "mobile_media_type": "video",
         "mobile_image": "shopify://shop_images/DSC_6603.jpg",
         "mobile_video_url": "https://cdn.shopify.com/videos/c/o/v/4517952203c1473a85761ffd7628f24d.mp4",
-        "eyebrow": "FALL / WINTER 2027",
-        "heading": "The everyday edit.",
-        "text": "<p>Colour. Texture. Confidence.</p>",
+        "eyebrow": "KNITWEAR & DENIM",
+        "heading": "Everyday Looks with a Cairene Spirit",
+        "text": "<p>Comfortable, modern pieces for your everyday wardrobe.</p>",
+        "copy_color": "#352A25",
+        "cta_color": "#BC7969",
+        "cta_text": "#352A25",
         "button_label": "Shop new arrivals",
         "button_link": "shopify://collections/fw-27",
         "color_scheme": "scheme-2"
@@ -40,31 +43,30 @@
     "ziad_collections": {
       "type": "ziad-collections",
       "blocks": {
-        "fw27": { "type": "collection", "settings": { "collection": "fw-27", "title": "FW 27" } },
         "pullovers": { "type": "collection", "settings": { "collection": "pullover", "title": "Pullovers" } },
         "jackets": { "type": "collection", "settings": { "collection": "jackets", "title": "Jackets" } },
         "cardigans": { "type": "collection", "settings": { "collection": "cardigans", "title": "Cardigans" } },
         "tops": { "type": "collection", "settings": { "collection": "tops", "title": "Tops & shirts" } }
       },
-      "block_order": ["fw27", "pullovers", "jackets", "cardigans", "tops"],
+      "block_order": ["pullovers", "jackets", "cardigans", "tops"],
       "settings": {
-        "eyebrow": "Clothes define. Clothes talk.",
-        "heading": "Shop the collections.",
-        "link_label": "View all collections",
-        "columns_desktop": 5,
+        "eyebrow": "",
+        "heading": "Shop by Collection",
+        "link_label": "",
+        "columns_desktop": 4,
         "color_scheme": "scheme-1"
       }
     },
     "ziad_product_edit": {
       "type": "ziad-product-edit",
       "settings": {
-        "eyebrow": "New and noteworthy",
+        "eyebrow": "",
         "heading": "New Arrivals",
         "collection": "fw-27",
         "products_to_show": 4,
         "enable_view_toggle": false,
         "quick_add": "standard",
-        "view_all_label": "View the full edit",
+        "view_all_label": "View all",
         "color_scheme": "scheme-1"
       }
     },
