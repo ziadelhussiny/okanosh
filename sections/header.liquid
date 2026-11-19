@@ -167,7 +167,7 @@
   <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if country_selector or language_selector %} header--has-localizations{% endif %}">
     {%- liquid
       assign render_search_left = false
-      if section.settings.logo_position == 'top-center' or section.settings.menu == blank or shop.customer_accounts_enabled
+      if section.settings.logo_position == 'top-center' or section.settings.menu == blank
         assign render_search_left = true
       endif
 
@@ -216,7 +216,9 @@
     {%- liquid
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
+          echo '<nav class="header__inline-menu okanosh-desktop-nav" aria-label="Main menu">'
+          render 'okanosh-navigation'
+          echo '</nav>'
         elsif section.settings.menu_type_desktop != 'drawer'
           render 'header-mega-menu'
         endif
@@ -282,7 +284,7 @@
       </div>
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
-      <button type="button" class="header__icon header__icon--wishlist link focus-inset" data-ziad-wishlist-open aria-label="Open wishlist" aria-haspopup="dialog" aria-controls="ZiadWishlistDrawer">
+      <button hidden type="button" class="header__icon header__icon--wishlist link focus-inset" data-ziad-wishlist-open aria-label="Open wishlist" aria-haspopup="dialog" aria-controls="ZiadWishlistDrawer">
         <span class="svg-wrapper">
           <svg class="icon" viewBox="2.5 3 19 19" aria-hidden="true"><path d="M12 20.5S4 16 4 9.8A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8 3.6c0 6.2-8 10.7-8 10.7Z"/></svg>
         </span>

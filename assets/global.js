@@ -442,7 +442,7 @@ class MenuDrawer extends HTMLElement {
   }
 
   bindEvents() {
-    this.querySelectorAll('summary').forEach((summary) =>
+    this.querySelectorAll('summary:not(.okanosh-nav summary)').forEach((summary) =>
       summary.addEventListener('click', this.onSummaryClick.bind(this))
     );
     this.querySelectorAll(

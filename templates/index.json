@@ -166,6 +166,7 @@
     },
     "ziad_newsletter": {
       "type": "newsletter",
+      "disabled": true,
       "blocks": {
         "heading": {
           "type": "heading",

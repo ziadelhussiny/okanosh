@@ -51,6 +51,30 @@ textarea { letter-spacing: 0.01em; }
 .header__menu-item[href*='/collections/sale'],
 .menu-drawer__menu-item[href*='/collections/sale'] { color: var(--ziad-accent); font-weight: 700; }
 .header__icon--wishlist { position: relative; border: 0; background: transparent; color: inherit; cursor: pointer; }
+.header__icon--wishlist[hidden] { display: none; }
+.okanosh-nav { margin: 0; padding: 0; }
+.okanosh-nav a, .okanosh-nav summary { color: inherit; text-decoration: none; padding: .9rem .65rem; display: block; }
+.okanosh-nav summary { cursor: pointer; }
+.okanosh-nav summary .icon-caret { position: static; margin-inline-start: .35rem; }
+.okanosh-nav .okanosh-nav__sale { background: var(--ziad-accent); color: var(--ziad-ink); font-weight: 700; }
+.menu-drawer .okanosh-nav { padding-inline: 1.6rem; }
+.menu-drawer .okanosh-nav ul { padding-inline-start: 1.2rem; }
+@media screen and (min-width: 990px) {
+  .okanosh-desktop-nav > .okanosh-nav { display: flex; flex-wrap: wrap; gap: .15rem; font-size: 1.3rem; }
+  .okanosh-desktop-nav details { position: relative; }
+  .okanosh-desktop-nav details > ul { position: absolute; z-index: 5; min-width: 17rem; padding: .6rem; background: var(--ziad-background); color: var(--ziad-ink); border: 1px solid var(--ziad-detail); }
+}
+.footer .footer__content-bottom { display: flex; flex-wrap: wrap-reverse; justify-content: space-between; max-width: var(--page-width); margin-inline: auto; }
+.footer .footer__content-bottom-wrapper { width: auto; flex: 0 1 auto; }
+.footer .footer__copyright { text-align: start; }
+@media screen and (min-width: 750px) {
+  .footer .footer__content-top { display: grid; grid-template-columns: 2fr 1fr; gap: 3.2rem; }
+  .footer .footer__blocks-wrapper { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer .footer__blocks-wrapper .footer-block { width: auto; max-width: none; }
+  .footer .footer-block--newsletter { display: block; margin: 0; }
+  .footer .footer-block__newsletter { text-align: start; }
+  .footer .footer__content-bottom { flex-direction: row-reverse; }
+}
 .header__icons .header__icon--wishlist .icon { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.15; }
 .zt-wishlist-count { position: absolute; top: .2rem; right: .1rem; display: grid; min-width: 1.7rem; height: 1.7rem; place-items: center; border-radius: 50%; background: var(--ziad-accent); color: var(--ziad-background); font-size: .9rem; line-height: 1; }
 .zt-wishlist-count[hidden] { display: none; }

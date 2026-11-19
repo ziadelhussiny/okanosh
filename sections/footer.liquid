@@ -114,17 +114,17 @@
                         <li><a href="{{ shipping_url }}" class="link link--text list-menu__item list-menu__item--link">Shipping Policy</a></li>
                         <li><a href="{{ privacy_url }}" class="link link--text list-menu__item list-menu__item--link">Privacy Policy</a></li>
                         <li><a href="{{ terms_url }}" class="link link--text list-menu__item list-menu__item--link">Terms of Service</a></li>
-                        <li><a href="/pages/contact" class="link link--text list-menu__item list-menu__item--link">Contact Us</a></li>
+                        <li><a href="{{ pages.contact.url | default: pages['contact-us'].url | default: 'mailto:Okanosh.eg@gmail.com' }}" class="link link--text list-menu__item list-menu__item--link">Contact Us</a></li>
                       </ul>
                     {%- else -%}
                       <ul class="footer-block__details-content list-unstyled">
-                        <li><a href="/collections/new-arrivals" class="link link--text list-menu__item list-menu__item--link">New arrivals</a></li>
-                        <li><a href="/collections/bestsellers" class="link link--text list-menu__item list-menu__item--link">Bestsellers</a></li>
+                        <li><a href="{{ collections['new-arrivals'].url | default: collections['fw-27'].url | default: '/collections/all?sort_by=created-descending' }}" class="link link--text list-menu__item list-menu__item--link">New Arrivals</a></li>
+                        <li><a href="{{ collections.bestsellers.url | default: '/collections/all?sort_by=best-selling' }}" class="link link--text list-menu__item list-menu__item--link">Bestsellers</a></li>
                         <li><a href="{{ routes.all_products_collection_url }}" class="link link--text list-menu__item list-menu__item--link">Shop All</a></li>
-                        <li><a href="/collections/sets" class="link link--text list-menu__item list-menu__item--link">Sets</a></li>
-                        <li><a href="/collections/tops" class="link link--text list-menu__item list-menu__item--link">Tops & Shirts</a></li>
-                        <li><a href="/collections/pants" class="link link--text list-menu__item list-menu__item--link">Pants & Dresses</a></li>
-                        <li><a href="/collections/sale" class="link link--text list-menu__item list-menu__item--link">Sale</a></li>
+                        <li><a href="{{ collections.sets.url | default: '/search?type=product&amp;q=sets' }}" class="link link--text list-menu__item list-menu__item--link">Sets</a></li>
+                        <li><a href="{{ collections['tops-shirts'].url | default: collections.tops.url | default: '/search?type=product&amp;q=tops+OR+shirts' }}" class="link link--text list-menu__item list-menu__item--link">Tops & Shirts</a></li>
+                        <li><a href="{{ collections['pants-dresses'].url | default: '/search?type=product&amp;q=pants+OR+dresses' }}" class="link link--text list-menu__item list-menu__item--link">Pants & Dresses</a></li>
+                        <li><a href="{{ collections.sale.url | default: '/search?type=product&amp;q=sale' }}" class="link link--text list-menu__item list-menu__item--link">Sale</a></li>
                       </ul>
                     {%- endif -%}
                   {%- when 'brand_information' -%}
@@ -191,10 +191,11 @@
             data-cascade
           {% endif %}
         >
-          {%- if section.settings.newsletter_enable and request.page_type != 'index' -%}
+          {%- if section.settings.newsletter_enable -%}
             <div class="footer-block__newsletter">
+              <h2 class="footer-block__heading">Stay Connected</h2>
               {%- if section.settings.newsletter_heading != blank -%}
-                <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+                <p class="inline-richtext">{{ section.settings.newsletter_heading }}</p>
               {%- endif -%}
               {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
                 <input type="hidden" name="contact[tags]" value="newsletter">
@@ -326,9 +327,8 @@
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
         <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+          >&copy; {{ 'now' | date: '%Y' }}, Okanosh.
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
