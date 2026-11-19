@@ -1,0 +1,38 @@
+<section class="zt-home-message zt-home-message--{{ section.settings.layout }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width zt-home-message__inner">
+    <div>
+      {% if section.settings.eyebrow != blank %}
+        <p class="zt-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+      <h2 class="zt-display">{{ section.settings.heading | escape }}</h2>
+    </div>
+    <div>
+      {% if section.settings.text != blank %}
+        <div class="rte">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.link != blank and section.settings.link_label != blank %}
+        <a class="zt-text-link" href="{{ section.settings.link }}">{{ section.settings.link_label | escape }} →</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Okanosh home message",
+  "settings": [
+    { "type": "select", "id": "layout", "label": "Layout", "default": "center", "options": [
+      { "value": "strip", "label": "Compact strip" },
+      { "value": "center", "label": "Centered story" },
+      { "value": "split", "label": "Split feature" }
+    ] },
+    { "type": "text", "id": "eyebrow", "label": "Label" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "About Okanosh" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "link_label", "label": "Link label" },
+    { "type": "url", "id": "link", "label": "Link" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colors", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "Okanosh home message" }]
+}
+{% endschema %}
