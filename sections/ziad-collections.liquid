@@ -8,6 +8,38 @@
       {%- if section.settings.link_label != blank -%}<a class="zt-text-link" href="{{ routes.collections_url }}">{{ section.settings.link_label | escape }} →</a>{%- endif -%}
     </div>
 
+    {%- if section.settings.enable_filter_shortcuts -%}
+      {%- assign filter_collection = section.settings.filter_collection | default: collections.all -%}
+      {%- capture filter_shortcuts -%}
+        {%- for filter in filter_collection.filters -%}
+          {%- liquid
+            assign shortcut_title = ''
+            assign filter_label = filter.label | downcase
+            if filter_label == 'color' or filter_label == 'colour' or filter_label == 'اللون'
+              assign shortcut_title = 'Shop by colour'
+            elsif filter_label == 'fit' or filter_label == 'cut' or filter_label == 'القصّة'
+              assign shortcut_title = 'Shop by cut'
+            endif
+          -%}
+          {%- if shortcut_title != blank and filter.values.size > 0 -%}
+            <details class="zt-filter-shortcut">
+              <summary>{{ shortcut_title }}</summary>
+              <ul role="list">
+                {%- for value in filter.values -%}
+                  {%- if value.count > 0 -%}
+                    <li><a href="{{ value.url_to_add | escape }}">{{ value.label | escape }}</a></li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if filter_shortcuts != blank -%}
+        <div class="zt-filter-shortcuts">{{ filter_shortcuts }}</div>
+      {%- endif -%}
+    {%- endif -%}
+
     <div class="zt-collections__rail" style="--columns: {{ section.settings.columns_desktop }}">
       {%- for block in section.blocks -%}
         {%- assign collection = block.settings.collection -%}
@@ -44,6 +76,8 @@
     { "type": "text", "id": "heading_accent", "label": "Italic accent after heading" },
     { "type": "text", "id": "link_label", "label": "View all label", "default": "View all collections" },
     { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 3, "max": 6, "step": 1, "default": 5 },
+    { "type": "checkbox", "id": "enable_filter_shortcuts", "label": "Show colour and cut shortcuts", "default": true },
+    { "type": "collection", "id": "filter_collection", "label": "Collection for filter shortcuts", "info": "Defaults to all products. Enable Color and Fit or Cut filters in Shopify Search & Discovery." },
     { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
   ],
   "blocks": [

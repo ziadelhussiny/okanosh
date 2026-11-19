@@ -210,6 +210,13 @@
               {%- endif -%}
 
               {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+              {%- if show_style_details -%}
+                {%- assign fit = card_product.metafields.custom.fit.value -%}
+                {%- assign fabric = card_product.metafields.custom.fabric.value -%}
+                {%- if fit != blank or fabric != blank -%}
+                  <p class="zt-card-style-details">{{ fit | escape }}{% if fit != blank and fabric != blank %} · {% endif %}{{ fabric | escape }}</p>
+                {%- endif -%}
+              {%- endif -%}
               {%- if card_product.quantity_price_breaks_configured? -%}
                 {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                   {% liquid

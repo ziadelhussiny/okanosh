@@ -34,6 +34,7 @@
           <li class="grid__item">
             {% render 'card-product',
               card_product: product,
+              show_style_details: section.settings.show_style_details,
               media_aspect_ratio: 'portrait',
               image_shape: 'default',
               lazy_load: true,
@@ -68,6 +69,7 @@
     { "type": "text", "id": "heading_accent", "label": "Italic accent after heading" },
     { "type": "collection", "id": "collection", "label": "Products collection" },
     { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 8, "step": 1, "default": 4 },
+    { "type": "checkbox", "id": "show_style_details", "label": "Show product fit and fabric", "default": true },
     { "type": "checkbox", "id": "enable_view_toggle", "label": "Enable model / product view", "default": true },
     { "type": "select", "id": "quick_add", "label": "Quick add", "default": "standard", "options": [{ "value": "none", "label": "None" }, { "value": "standard", "label": "Standard" }, { "value": "bulk", "label": "Bulk" }] },
     { "type": "text", "id": "view_all_label", "label": "View all label", "default": "View the full edit" },
