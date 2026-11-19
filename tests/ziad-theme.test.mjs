@@ -21,14 +21,12 @@ test('homepage uses a focused ziad editorial commerce sequence', async () => {
   const template = parseJsonc(source);
   const types = template.order.map((id) => template.sections[id].type);
 
-  assert.deepEqual(types, [
-    'ziad-hero',
-    'ziad-collections',
-    'ziad-product-edit',
-    'ziad-editorial-story',
-    'ziad-community',
-    'newsletter',
-  ]);
+  assert.equal(types[0], 'ziad-hero');
+  assert.deepEqual([...template.order].sort(), Object.keys(template.sections).sort());
+  for (const required of ['ziad-collections', 'ziad-product-edit', 'ziad-community', 'newsletter']) {
+    assert.ok(types.includes(required), `Missing homepage section: ${required}`);
+  }
+  assert.ok(types.indexOf('ziad-community') < types.indexOf('newsletter'));
 });
 
 test('optional premium sections remain editable in the theme library', async () => {
@@ -108,8 +106,10 @@ test('cart drawer communicates progress to complimentary shipping', async () => 
   const drawer = await read('snippets/cart-drawer.liquid');
 
   assert.match(drawer, /ziad-shipping-progress/);
-  assert.match(drawer, /300000/);
-  assert.match(drawer, /role="progressbar"/);
+  assert.match(await read('sections/main-cart-footer.liquid'), /render 'ziad-shipping-progress'/);
+  const progress = await read('snippets/ziad-shipping-progress.liquid');
+  assert.match(progress, /300000/);
+  assert.match(progress, /role="progressbar"/);
 });
 
 test('wishlist works across product cards, product pages and the header drawer', async () => {

@@ -1,1 +1,50 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":36,"padding_bottom":36}},"form":{"type":"contact-form","settings":{"heading":"","heading_size":"h1","color_scheme":"scheme-1","padding_top":36,"padding_bottom":36}},"rich_text_PqztbB":{"type":"rich-text","blocks":{"text_BjqWjW":{"type":"text","settings":{"text":"\u003cp\u003e01000793336 \u003cbr\/\u003eOkanosh.eg@gmail.com\u003cbr\/\u003eEl khamael compound el sheikh zayed \u003cbr\/\u003ePhase 3 A, building number 329\u003cbr\/\u003eThird floor apartment number 35\u003c\/p\u003e"}}},"block_order":["text_BjqWjW"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"left","content_alignment":"left","color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":52}}},"order":["main","form","rich_text_PqztbB"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Contact Okanosh",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_PqztbB": {
+      "type": "rich-text",
+      "blocks": {
+        "text_BjqWjW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>01000793336 <br/>Okanosh.eg@gmail.com<br/>El khamael compound el sheikh zayed <br/>Phase 3 A, building number 329<br/>Third floor apartment number 35</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_BjqWjW"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    }
+  },
+  "order": [
+    "main",
+    "form",
+    "rich_text_PqztbB"
+  ]
+}

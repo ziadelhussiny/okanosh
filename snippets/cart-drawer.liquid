@@ -511,34 +511,7 @@
         <!-- Start blocks -->
         <!-- Subtotals -->
 
-        {%- liquid
-          assign ziad_shipping_threshold = 300000
-          assign ziad_shipping_remaining = ziad_shipping_threshold | minus: cart.total_price
-          assign ziad_shipping_progress = cart.total_price | times: 100 | divided_by: ziad_shipping_threshold
-          if ziad_shipping_progress > 100
-            assign ziad_shipping_progress = 100
-          endif
-        -%}
-        <div class="ziad-shipping-progress" aria-live="polite">
-          <div class="ziad-shipping-progress__message">
-            {%- if ziad_shipping_remaining > 0 -%}
-              <span>Add <strong>{{ ziad_shipping_remaining | money_with_currency }}</strong> for complimentary shipping.</span>
-            {%- else -%}
-              <strong>Complimentary shipping unlocked.</strong>
-            {%- endif -%}
-            <span aria-hidden="true">{{ ziad_shipping_progress }}%</span>
-          </div>
-          <div
-            class="ziad-shipping-progress__track"
-            role="progressbar"
-            aria-label="Progress to complimentary shipping"
-            aria-valuemin="0"
-            aria-valuemax="300000"
-            aria-valuenow="{{ cart.total_price | at_most: ziad_shipping_threshold }}"
-          >
-            <span style="--ziad-shipping-progress: {{ ziad_shipping_progress }}%"></span>
-          </div>
-        </div>
+        {% render 'ziad-shipping-progress', cart: cart %}
 
         <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
           <div>
