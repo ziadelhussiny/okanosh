@@ -79,6 +79,8 @@ textarea { letter-spacing: 0.01em; }
 .card-wrapper .price-item { font-size: var(--ziad-card-price, 12px); font-weight: 400; }
 .card-wrapper .card__heading { font-size: var(--ziad-card-title, 14px); }
 .zt-fit-note { font-size: 1.4rem; line-height: 1.5; }
+.zt-fit-panel { padding: 1.4rem 1.6rem; background: var(--ziad-detail); color: var(--ziad-ink); }
+.zt-fit-panel .zt-fit-note { margin: .45rem 0 0; }
 .zt-product-edit .card__information { padding-inline: 0; }
 .zt-product-edit .card__heading { font-weight: 600; }
 .zt-product-edit .card__heading { font-size: var(--ziad-card-title, 14px); }

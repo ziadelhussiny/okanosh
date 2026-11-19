@@ -214,7 +214,10 @@
                   {{ block.settings.custom_liquid }}
                 {%- when 'size_chart' -%}
                   {%- if product.metafields.custom.fit_notes.value != blank -%}
-                    <p class="zt-fit-note">{{ product.metafields.custom.fit_notes.value | escape }}</p>
+                    <div class="zt-fit-panel">
+                      <strong>Fit note</strong>
+                      <p class="zt-fit-note">{{ product.metafields.custom.fit_notes.value | escape }}</p>
+                    </div>
                   {%- endif -%}
                   {% render 'ziad-size-chart', product: product, block: block, section: section %}
                 {%- when 'purchase_assurance' -%}
