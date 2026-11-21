@@ -50,6 +50,32 @@ textarea { letter-spacing: 0.01em; }
 .header__menu-item span { text-underline-offset: 0.5rem; }
 .header__menu-item[href*='/collections/sale'],
 .menu-drawer__menu-item[href*='/collections/sale'] { color: var(--ziad-accent); font-weight: 700; }
+.header__inline-menu > .list-menu > li > a[href*='/collections/sale'] {
+  background: var(--ziad-accent);
+  color: var(--ziad-ink);
+}
+@media screen and (min-width: 1200px) {
+  .header--middle-center .header__inline-menu > .list-menu {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .header--middle-center .header__inline-menu > .list-menu > li :is(a, summary).header__menu-item {
+    white-space: nowrap;
+  }
+  .header--middle-center .header__inline-menu > .list-menu > li > a,
+  .header--middle-center .header__inline-menu > .list-menu > li > header-menu > details > summary {
+    font-size: 1.3rem;
+    letter-spacing: .01em;
+    padding-inline-start: .65rem;
+  }
+  .header--middle-center .header__inline-menu > .list-menu > li > a { padding-inline-end: .65rem; }
+  .header--middle-center .header__inline-menu > .list-menu > li > header-menu > details > summary { padding-inline-end: 2rem; }
+  .header--middle-center .header__inline-menu > .list-menu > li > header-menu > details > summary .icon-caret { right: .55rem; }
+}
+@media screen and (min-width: 990px) and (max-width: 1199px) {
+  .header--middle-center.header--has-menu .header__inline-menu { display: none; }
+  .header--middle-center.header--has-menu header-drawer { display: block; grid-area: navigation; }
+}
 .header__icon--wishlist { position: relative; border: 0; background: transparent; color: inherit; cursor: pointer; }
 .header__icon--wishlist[hidden] { display: none; }
 .footer .footer__content-bottom { display: flex; flex-wrap: wrap-reverse; justify-content: space-between; max-width: var(--page-width); margin-inline: auto; }
