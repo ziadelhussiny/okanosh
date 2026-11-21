@@ -64,7 +64,9 @@ textarea { letter-spacing: 0.01em; }
   }
   .header--middle-center .header__inline-menu > .list-menu > li > a,
   .header--middle-center .header__inline-menu > .list-menu > li > header-menu > details > summary {
-    font-size: 1.3rem;
+    font-size: clamp(1.4rem, 1.05vw, 1.6rem);
+    font-weight: 600;
+    color: rgb(var(--color-foreground));
     letter-spacing: .01em;
     padding-inline-start: .65rem;
   }
