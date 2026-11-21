@@ -48,6 +48,23 @@ textarea { letter-spacing: 0.01em; }
 }
 
 .header__menu-item span { text-underline-offset: 0.5rem; }
+.header__inline-menu .header__submenu {
+  min-width: 24rem;
+  padding-block: .8rem;
+  background: var(--ziad-background);
+  border: 1px solid var(--ziad-detail);
+  box-shadow: 0 .8rem 2rem rgb(53 42 37 / 14%);
+}
+.header__inline-menu .header__submenu .header__menu-item {
+  min-height: 4.6rem;
+  padding-inline: 1.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--ziad-ink);
+}
+.header__inline-menu .header__submenu .header__menu-item:is(:hover, :focus-visible) {
+  background: var(--ziad-detail);
+}
 .header__menu-item[href*='/collections/sale'],
 .menu-drawer__menu-item[href*='/collections/sale'] { color: var(--ziad-accent); font-weight: 700; }
 .header__inline-menu > .list-menu > li > a[href*='/collections/sale'] {
