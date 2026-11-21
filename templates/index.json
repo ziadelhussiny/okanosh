@@ -26,7 +26,7 @@
         "desktop_video_url": "https://cdn.shopify.com/videos/c/o/v/4517952203c1473a85761ffd7628f24d.mp4",
         "mobile_media_type": "video",
         "mobile_image": "shopify://shop_images/DSC_6603.jpg",
-        "mobile_video_url": "https://cdn.shopify.com/videos/c/o/v/4517952203c1473a85761ffd7628f24d.mp4",
+        "mobile_video_url": "https://cdn.shopify.com/videos/c/o/v/d991b06d4c744f1f8388b49275556c97.mp4",
         "eyebrow": "FALL / WINTER 2027",
         "heading": "The new FW27 drop.",
         "text": "<p>Colour, texture and easy layers for colder days.</p>",
@@ -115,6 +115,7 @@
         "heading_accent": "",
         "link_label": "View all collections",
         "columns_desktop": 3,
+        "columns_mobile": 2,
         "enable_filter_shortcuts": true,
         "filter_collection": "",
         "color_scheme": "scheme-1"
