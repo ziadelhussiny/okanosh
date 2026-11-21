@@ -21,7 +21,7 @@
         "cta_color": "#f8f3ef",
         "cta_text": "#352a25",
         "media_fit": "cover",
-        "desktop_media_type": "image",
+        "desktop_media_type": "video",
         "desktop_image": "shopify://shop_images/DSC_6603.jpg",
         "desktop_video_url": "https://cdn.shopify.com/videos/c/o/v/d991b06d4c744f1f8388b49275556c97.mp4",
         "mobile_media_type": "video",
