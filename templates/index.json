@@ -35,17 +35,15 @@
         "color_scheme": "scheme-2"
       }
     },
-    "ziad_product_edit": {
-      "type": "ziad-product-edit",
+    "ziad_identity": {
+      "type": "ziad-home-message",
       "settings": {
-        "eyebrow": "FALL / WINTER 2027",
-        "heading": "The FW27 edit.",
-        "heading_accent": "",
-        "collection": "fw-27",
-        "products_to_show": 8,
-        "enable_view_toggle": true,
-        "quick_add": "standard",
-        "view_all_label": "View all pieces",
+        "layout": "strip",
+        "eyebrow": "",
+        "heading": "Egyptian womens wear.",
+        "text": "<p>Okanosh</p>",
+        "link_label": "",
+        "link": "",
         "color_scheme": "scheme-1"
       }
     },
@@ -116,42 +114,26 @@
         "heading": "Shop the collections.",
         "heading_accent": "",
         "link_label": "View all collections",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
+        "enable_filter_shortcuts": true,
+        "filter_collection": "",
         "color_scheme": "scheme-1"
       }
     },
-    "ziad_editorial": {
-      "type": "ziad-editorial-story",
-      "settings": {
-        "campaign_image": "shopify://shop_images/DSC_6603.jpg",
-        "campaign_heading": "Loud, everyday pieces.",
-        "campaign_link_label": "Explore FW27",
-        "campaign_link": "shopify://collections/fw-27",
-        "color_scheme": "scheme-3",
-        "story_image": "shopify://shop_images/DSC_6513.jpg",
-        "story_eyebrow": "Our story",
-        "story_heading": "About Okanosh",
-        "story_text": "<p>Okanosh is a contemporary Egyptian womenswear brand for the young, confident and expressive woman. We design versatile, colorful pieces that fit your everyday life.</p>",
-        "story_link_label": "Learn more",
-        "story_link": "shopify://pages/about-us",
-        "story_color_scheme": "scheme-1"
-      },
-      "disabled": true
-    },
-    "ziad_product_edit_rQN84h": {
+    "ziad_product_edit": {
       "type": "ziad-product-edit",
       "settings": {
-        "eyebrow": "",
-        "heading": "All",
-        "heading_accent": "Products",
+        "eyebrow": "FALL / WINTER 2027",
+        "heading": "The FW27 edit.",
+        "heading_accent": "",
         "collection": "fw-27",
-        "products_to_show": 4,
+        "products_to_show": 8,
+        "show_style_details": true,
         "enable_view_toggle": true,
-        "quick_add": "bulk",
-        "view_all_label": "View all",
+        "quick_add": "standard",
+        "view_all_label": "View all pieces",
         "color_scheme": "scheme-1"
-      },
-      "disabled": true
+      }
     },
     "ziad_community": {
       "type": "ziad-community",
@@ -190,9 +172,68 @@
         "color_scheme": "scheme-3"
       }
     },
+    "ziad_brand": {
+      "type": "ziad-home-message",
+      "disabled": true,
+      "settings": {
+        "layout": "center",
+        "eyebrow": "OUR STORY",
+        "heading": "An everyday wardrobe.",
+        "text": "<p>Versatile, colorful pieces designed in Egypt for wherever your day takes you.</p>",
+        "link_label": "About Okanosh",
+        "link": "shopify://pages/about-us",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "ziad_creators": {
+      "type": "ziad-home-message",
+      "disabled": true,
+      "settings": {
+        "layout": "split",
+        "eyebrow": "",
+        "heading": "Create with Okanosh",
+        "text": "<p>Have an idea for styling or creating with Okanosh? Tell us what you have in mind.</p>",
+        "link_label": "Get in touch",
+        "link": "mailto:Okanosh.eg@gmail.com",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "ziad_editorial": {
+      "type": "ziad-editorial-story",
+      "disabled": true,
+      "settings": {
+        "campaign_image": "shopify://shop_images/DSC_6603.jpg",
+        "campaign_heading": "Loud, everyday pieces.",
+        "campaign_link_label": "Explore FW27",
+        "campaign_link": "shopify://collections/fw-27",
+        "color_scheme": "scheme-3",
+        "story_image": "shopify://shop_images/DSC_6513.jpg",
+        "story_eyebrow": "Our story",
+        "story_heading": "About Okanosh",
+        "story_text": "<p>Okanosh is a contemporary Egyptian womenswear brand for the young, confident and expressive woman. We design versatile, colorful pieces that fit your everyday life.</p>",
+        "story_link_label": "Learn more",
+        "story_link": "shopify://pages/about-us",
+        "story_color_scheme": "scheme-1"
+      }
+    },
+    "ziad_product_edit_rQN84h": {
+      "type": "ziad-product-edit",
+      "disabled": true,
+      "settings": {
+        "eyebrow": "",
+        "heading": "All",
+        "heading_accent": "Products",
+        "collection": "fw-27",
+        "products_to_show": 4,
+        "show_style_details": true,
+        "enable_view_toggle": true,
+        "quick_add": "bulk",
+        "view_all_label": "View all",
+        "color_scheme": "scheme-1"
+      }
+    },
     "ziad_newsletter": {
       "type": "newsletter",
-      "disabled": true,
       "blocks": {
         "heading": {
           "type": "heading",
@@ -217,47 +258,12 @@
         "intro",
         "signup"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "full_width": true,
         "padding_top": 20,
         "padding_bottom": 20
-      }
-    },
-    "ziad_identity": {
-      "type": "ziad-home-message",
-      "settings": {
-        "layout": "strip",
-        "heading": "Egyptian womenswear.",
-        "text": "<p>Okanosh</p>",
-        "link_label": "",
-        "link": "",
-        "color_scheme": "scheme-1",
-        "eyebrow": ""
-      }
-    },
-    "ziad_brand": {
-      "type": "ziad-home-message",
-      "settings": {
-        "layout": "center",
-        "heading": "An everyday wardrobe.",
-        "text": "<p>Versatile, colorful pieces designed in Egypt for wherever your day takes you.</p>",
-        "link_label": "About Okanosh",
-        "link": "shopify://pages/about-us",
-        "color_scheme": "scheme-3",
-        "eyebrow": "OUR STORY"
-      }
-    },
-    "ziad_creators": {
-      "type": "ziad-home-message",
-      "settings": {
-        "layout": "split",
-        "heading": "Create with Okanosh",
-        "text": "<p>Have an idea for styling or creating with Okanosh? Tell us what you have in mind.</p>",
-        "link_label": "Get in touch",
-        "link": "mailto:Okanosh.eg@gmail.com",
-        "color_scheme": "scheme-1",
-        "eyebrow": ""
       }
     }
   },
