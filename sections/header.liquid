@@ -216,9 +216,7 @@
     {%- liquid
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
-          echo '<nav class="header__inline-menu okanosh-desktop-nav" aria-label="Main menu">'
-          render 'okanosh-navigation'
-          echo '</nav>'
+          render 'header-dropdown-menu'
         elsif section.settings.menu_type_desktop != 'drawer'
           render 'header-mega-menu'
         endif
