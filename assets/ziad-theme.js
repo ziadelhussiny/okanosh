@@ -2,7 +2,38 @@ class ZiadProductView extends HTMLElement {
   connectedCallback() {
     this.buttons = [...this.querySelectorAll('[data-ziad-product-view]')];
     this.grid = this.querySelector('[data-ziad-product-grid]');
-    this.buttons.forEach((button) => button.addEventListener('click', () => this.select(button)));
+    this.railEvents?.abort();
+    this.railEvents = new AbortController();
+    const { signal } = this.railEvents;
+    this.buttons.forEach((button) => button.addEventListener('click', () => this.select(button), { signal }));
+    const controls = this.querySelector('[data-ziad-rail-controls]');
+    if (!this.grid || !controls) return;
+
+    const arrows = [...controls.querySelectorAll('[data-ziad-rail-step]')];
+    const refresh = () => {
+      const max = this.grid.scrollWidth - this.grid.clientWidth;
+      const position = Math.abs(this.grid.scrollLeft);
+      controls.hidden = max < 2;
+      arrows[0].disabled = position < 2;
+      arrows[1].disabled = position >= max - 2;
+    };
+
+    arrows.forEach((button) => button.addEventListener('click', () => {
+      const gap = parseFloat(getComputedStyle(this.grid).columnGap) || 0;
+      const distance = (this.grid.firstElementChild?.getBoundingClientRect().width || 0) + gap;
+      const direction = getComputedStyle(this.grid).direction === 'rtl' ? -1 : 1;
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.grid.scrollBy({ left: distance * Number(button.dataset.ziadRailStep) * direction, behavior: reducedMotion ? 'instant' : 'smooth' });
+    }, { signal }));
+    this.grid.addEventListener('scroll', refresh, { signal, passive: true });
+    this.railObserver = new ResizeObserver(refresh);
+    this.railObserver.observe(this.grid);
+    refresh();
+  }
+
+  disconnectedCallback() {
+    this.railEvents?.abort();
+    this.railObserver?.disconnect();
   }
 
   select(activeButton) {

@@ -763,8 +763,29 @@ ziad-wishlist-drawer { display: block; }
   grid-auto-columns: 46%;
   overflow-x: auto;
   scroll-snap-type: x proximity;
-  padding-bottom: 1rem;
+  scrollbar-width: none;
+  padding-bottom: .4rem;
 }
+.zt-product-edit__grid::-webkit-scrollbar { display: none; }
+.zt-product-rail-controls { display: flex; justify-content: flex-end; gap: .8rem; margin-top: .8rem; }
+.zt-product-rail-controls[hidden] { display: none; }
+.zt-product-rail-controls button {
+  display: grid;
+  place-items: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  padding: 0;
+  border: 1px solid var(--ziad-detail);
+  border-radius: 50%;
+  background: var(--ziad-background);
+  color: var(--ziad-ink);
+  font-size: 2.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.zt-product-rail-controls button:disabled { opacity: .4; cursor: default; }
+.zt-product-rail-controls button:focus-visible { outline: 2px solid var(--ziad-accent); outline-offset: 2px; }
+[dir='rtl'] .zt-product-rail-controls button { transform: scaleX(-1); }
 .zt-product-edit .zt-product-edit__grid > li { scroll-snap-align: start; }
 
 @media screen and (min-width: 990px) {

@@ -28,7 +28,7 @@
       {%- endif -%}
     </div>
 
-    <ul class="grid product-grid grid--2-col-tablet-down grid--4-col-desktop zt-product-edit__grid" role="list" data-ziad-product-grid>
+    <ul id="ZiadProductRail-{{ section.id }}" class="grid product-grid grid--2-col-tablet-down grid--4-col-desktop zt-product-edit__grid" role="list" data-ziad-product-grid>
       {%- if section.settings.collection != blank -%}
         {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
           <li class="grid__item">
@@ -54,6 +54,10 @@
         {%- endfor -%}
       {%- endif -%}
     </ul>
+    <div class="zt-product-rail-controls" data-ziad-rail-controls hidden>
+      <button type="button" data-ziad-rail-step="-1" aria-label="Previous products" aria-controls="ZiadProductRail-{{ section.id }}">‹</button>
+      <button type="button" data-ziad-rail-step="1" aria-label="Next products" aria-controls="ZiadProductRail-{{ section.id }}">›</button>
+    </div>
 
   </div>
 </ziad-product-view>
