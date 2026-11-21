@@ -18,18 +18,21 @@
           "type": "link_list",
           "settings": {
             "heading": "Shop",
-            "menu": ""
+            "menu": "shop"
           }
         },
         "customer-care": {
           "type": "link_list",
           "settings": {
             "heading": "Customer Care",
-            "menu": ""
+            "menu": "footer"
           }
         }
       },
-      "block_order": ["shop", "customer-care"],
+      "block_order": [
+        "shop",
+        "customer-care"
+      ],
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,
@@ -46,5 +49,7 @@
       }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }
