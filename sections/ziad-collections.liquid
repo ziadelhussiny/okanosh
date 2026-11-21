@@ -40,14 +40,16 @@
       {%- endif -%}
     {%- endif -%}
 
-    <div class="zt-collections__rail" style="--columns: {{ section.settings.columns_desktop }}">
+    {%- assign mobile_columns = section.settings.columns_mobile | default: 2 -%}
+    <div class="zt-collections__rail" style="--columns: {{ section.settings.columns_desktop }}; --columns-mobile: {{ mobile_columns }}">
       {%- for block in section.blocks -%}
         {%- assign collection = block.settings.collection -%}
         {%- assign collection_image = block.settings.image | default: collection.featured_image -%}
         <a class="zt-collection-card" href="{{ collection.url | default: routes.collections_url }}" {{ block.shopify_attributes }}>
           <div class="zt-collection-card__media">
             {%- if collection_image != blank -%}
-              {{ collection_image | image_url: width: 1000 | image_tag: widths: '320, 480, 720, 1000', sizes: '(min-width: 990px) 20vw, 72vw', loading: 'lazy', alt: collection_image.alt | default: collection.title }}
+              {%- capture image_sizes -%}(min-width: 990px) {{ 100 | divided_by: section.settings.columns_desktop }}vw, {{ 100 | divided_by: mobile_columns }}vw{%- endcapture -%}
+              {{ collection_image | image_url: width: 1000 | image_tag: widths: '320, 480, 720, 1000', sizes: image_sizes, loading: 'lazy', alt: collection_image.alt | default: collection.title }}
             {%- else -%}
               {{ 'collection-apparel-1' | placeholder_svg_tag }}
             {%- endif -%}
@@ -76,6 +78,7 @@
     { "type": "text", "id": "heading_accent", "label": "Italic accent after heading" },
     { "type": "text", "id": "link_label", "label": "View all label", "default": "View all collections" },
     { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 3, "max": 6, "step": 1, "default": 5 },
+    { "type": "range", "id": "columns_mobile", "label": "Mobile columns", "min": 1, "max": 3, "step": 1, "default": 2 },
     { "type": "checkbox", "id": "enable_filter_shortcuts", "label": "Show colour and cut shortcuts", "default": true },
     { "type": "collection", "id": "filter_collection", "label": "Collection for filter shortcuts", "info": "Defaults to all products. Enable Color and Fit or Cut filters in Shopify Search & Discovery." },
     { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
